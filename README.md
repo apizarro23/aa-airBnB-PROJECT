@@ -1,2 +1,2 @@
-# aa-airBnB-PRIJECT
-# aa-airBnB-PRIJECT
+# aa-airBnB-PROJECT
+# aa-airBnB-PROJECT
