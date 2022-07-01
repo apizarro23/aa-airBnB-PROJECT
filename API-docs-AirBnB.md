@@ -3,6 +3,8 @@
 ## Database Schema Design
 
 `<insert database schema design here>`
+[aa-AirBnB_PROJECT (1).pdf](https://github.com/apizarro23/aa-airBnB-PROJECT/files/9030790/aa-AirBnB_PROJECT.1.pdf)
+
 
 ## API Documentation
 
