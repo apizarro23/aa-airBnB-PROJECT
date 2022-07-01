@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+
 ![Screen Shot 2022-07-01 at 1 50 19 PM](https://user-images.githubusercontent.com/61199533/176945812-e8a6523f-5191-4f34-98d4-bd5664c258cd.png)
 
 
