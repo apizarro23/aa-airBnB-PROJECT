@@ -41,7 +41,14 @@ router.get('/:spotid', async(req, res) => {
             price: spotDetails.price,
             createdAt: spotDetails.createdAt,
             updatedAt: spotDetails.updatedAt,
-            
+
         }
+        data.reviewsCount = numReviews
+
+        res.json(data)
     }
 })
+
+
+
+router.use()
