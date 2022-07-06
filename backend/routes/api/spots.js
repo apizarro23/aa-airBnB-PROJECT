@@ -1,5 +1,5 @@
 const express = require('express');
-const { UPSERT } = require('sequelize/types/query-types');
+// const { User } = require('sequelize/types/query-types');
 const router = express.Router();
 
 const {Spot, Review, User} = require ('../../db/models')
@@ -51,4 +51,4 @@ router.get('/:spotid', async(req, res) => {
 
 
 
-router.use()
+module.exports = router;
