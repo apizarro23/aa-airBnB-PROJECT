@@ -1,13 +1,19 @@
 const express = require('express');
-// const { User } = require('sequelize/types/query-types');
+const {requireAuth } = require('../../utils/auth');
+const {Spot, Image, User} = require('../../db/models');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
+// const express = require('express');
+// // const { User } = require('sequelize/types/query-types');
+// const router = express.Router();
 
-const {Spot, Review, User} = require ('../../db/models')
+// const {Spot, Review, User} = require ('../../db/models')
 
 // GET ALL SPOTS
 router.get('/', async(req, res) => {
     let allSpots = await Spot.findAll()
-    res.json({allSpots})
+    res.json(allSpots)
 })
 
 // GET DETAILS FOR A SPOT FROM AN ID
