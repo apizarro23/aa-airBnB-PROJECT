@@ -46,4 +46,15 @@ router.post(
     }
   );
 
+  //Get Current User
+  router.get('/currentuser', requireAuth, async (req, res) => {
+    const getCurrent = {
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email
+    }
+    return res.json(getCurrent);
+  });
+
 module.exports = router;

@@ -31,19 +31,47 @@ router.post(
       const user = await User.login({ credential, password });
   
       if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        return next(err);
-      }
-  
-      await setTokenCookie(res, user);
+        res.status(401);
+        return res.json({
+          message: "Invalid credentials",
+          statusCode: 401
+        })
+      };
 
-      
+      //THIS DIDNT WORK NEED MORE TESTING
+      // if (!req.body) {
+      //   res.json( {
+      //     message: "Validation error",
+      //     statusCode: 400,
+      //     errors: {
+      //       email: "Email is Required",
+      //       password: "Password is Required"
+      //     }
+      //   })
+      // }
+
+
+  
+      const token = await setTokenCookie(res, user);
+
+      // Can be stored as var
+      // const vaildRes = {
+      //   id: req.user.id,
+      //   firstName: req.user.firstName,
+      //   lastName: req.user.lastName,
+      //   email: req.user.email,
+      //   token: token
+      // }
+  
+      // return res.json(vaildRes);
+
   
       return res.json({
-        user
+        id: req.user.id,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        email: req.user.email,
+        token: token
       });
     }
   )
