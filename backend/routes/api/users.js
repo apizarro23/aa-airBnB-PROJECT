@@ -107,4 +107,27 @@ router.post(
     res.json(spots)
   });
 
+  //Get all reviews of the current user
+
+router.get("/currentuser/allreviews", requireAuth, async (req, res) => {
+  const review = await Review.findAll({
+    where: { id: req.user.id },
+      include: [
+        { model: User, attributes: ["id", "firstName", "lastName"] },
+        { model: Spot, attributes: {
+          exclude: ["description", "previewImage", "createdAt", "updatedAt"],
+        }},
+        { model: Image, attributes: ['url'] },
+      ],
+    },
+  );
+  
+  if (!review) {
+    res.status(404);
+    res.json({ message: "Spot does not exist"})
+  }
+
+  res.json(review);
+});
+
 module.exports = router;
