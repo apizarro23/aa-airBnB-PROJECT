@@ -14,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apizarro23/aa-airBnB-PRIJECT.git"
+    "url": "git+https://github.com/apizarro23/aa-airBnB-PROJECT.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/apizarro23/aa-airBnB-PRIJECT/issues"
+    "url": "https://github.com/apizarro23/aa-airBnB-PROJECT/issues"
   },
-  "homepage": "https://github.com/apizarro23/aa-airBnB-PRIJECT#readme"
+  "homepage": "https://github.com/apizarro23/aa-airBnB-PROJECT#readme"
 }
