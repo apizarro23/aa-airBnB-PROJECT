@@ -2,7 +2,7 @@
 const express = require('express');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Spot, Review, Image } = require('../../db/models');
 
 const router = express.Router();
 
@@ -35,8 +35,30 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-      const { email, password, username } = req.body;
-      const user = await User.signup({ email, username, password });
+      const { email, password, username, firstName, lastName } = req.body;
+
+      const validEmail = await User.findOne({
+        where: { email }
+      })
+      if (validEmail) {
+        res.status(403);
+        res.json({
+          message: "User with that email already exists!"
+        })
+      }
+
+      const user = await User.signup({ email, username, password, firstName, lastName });
+
+      if (!firstName) {
+        res.status(400).json({
+          message: "First Name is required"
+        })
+      }
+      if (!lastName) {
+        res.status(400).json({
+          message: "Last Name is required"
+        })
+      }
   
       await setTokenCookie(res, user);
   
@@ -56,5 +78,15 @@ router.post(
     }
     return res.json(getCurrent);
   });
+
+  //Get all Spots owned by the Current User
+  router.get("/currentuser/spots", requireAuth, async(req,res) => {
+    const {id} = req.user;
+
+    const spots = await Spot.findAll({
+      where: {ownerId: id},
+    });
+    res.json(spots)
+  })
 
 module.exports = router;
