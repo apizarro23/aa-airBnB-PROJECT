@@ -83,13 +83,13 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
 
 // //delete an image
 router.delete("/:imageId", requireAuth, async (req, res) => {
-    const image = await Image.findByPk(req.params.id);
+    const image = await Image.findByPk(req.params.imageId);
     const currentUser = req.user
   
     if (!image) {
         res.status(404);
         res.json({
-          message: "Review couldn't be found",
+          message: "Image couldn't be found",
           statusCode: 404,
         });
       }
