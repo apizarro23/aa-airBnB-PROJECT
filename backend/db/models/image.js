@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     spotId: {
       type: DataTypes.INTEGER
+    },
+    imageableId: {
+      type: DataTypes.INTEGER
+    },
+    imageableType: {
+      type: DataTypes.STRING
     }
     // url: DataTypes.STRING,
     // reviewId: DataTypes.INTEGER,
