@@ -8,21 +8,21 @@ module.exports = {
         reviewId: 1,
         spotId: 1,
         imageableId: 1,
-        imageableType: "jpeg"
+        imageableType: "Spot"
       },
       {
         url: 'https://static.wikia.nocookie.net/familyguy/images/f/f1/Griffin_Home.jpg/revision/latest?cb=20090614171921',
         reviewId: 2,
         spotId: 2,
         imageableId: 2,
-        imageableType: "jpeg"
+        imageableType: "Spot"
       },
       {
         url: 'https://images.squarespace-cdn.com/content/v1/58863daabf629a37e37ab32e/1486606898848-B5F90PKHXHGTFSNDWPQC/image-asset.jpeg?format=1000w',
         reviewId: 3,
         spotId: 3,
         imageableId: 3,
-        imageableType: "jpeg"
+        imageableType: "Review"
       }
     ], {});
   },

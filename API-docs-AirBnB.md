@@ -87,7 +87,7 @@ information.
 
     ```json
     {
-      "crednetial": "john.smith@gmail.com",
+      "credential": "john.smith@gmail.com",
       "password": "secret password"
     }
     ```
@@ -155,6 +155,7 @@ user's information.
     {
       "firstName": "John",
       "lastName": "Smith",
+      "username": "johnSmith",
       "email": "john.smith@gmail.com",
       "password": "secret password"
     }
@@ -1185,7 +1186,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: /spots/:spotid/addimage
+  * URL: images/spots/:spotid/addimage
   * Headers:
     * Content-Type: application/json
   * Body:
