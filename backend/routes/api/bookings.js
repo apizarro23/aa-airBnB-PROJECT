@@ -99,4 +99,11 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
     res.json(booking);
 })
 
+// Edit a Booking
+router.put('./bookingId', requireAuth, async(req, res) => {
+  const {spotId, userId, startDate, endDate} = req.body;
+
+  
+})
+
 module.exports = router;
