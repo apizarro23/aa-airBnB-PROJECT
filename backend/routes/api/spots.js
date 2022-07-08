@@ -42,15 +42,6 @@ router.get('/', async(req, res) => {
     res.json(allSpots)
 })
 
-// // GET DETAILS FOR A SPOT FROM CURREN
-// router.get('/:spotid', requireAuth, async (req, res) => {
-//     const { id } = req.spot
-
-//       const places = await Spot.findAll({
-//           where: {ownerId: id}
-//       });
-//   res.json(places[0])
-// });
 
   //Get details from a spot from an id
   router.get("/:spotid", async(req,res) => {
