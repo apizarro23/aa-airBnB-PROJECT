@@ -54,7 +54,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/currentuser
+  * URL: /api/users/currentuser
   * Body: none
 
 * Successful Response
@@ -80,7 +80,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /session //THIS IS THE LOGIN
+  * URL: /api/session **THIS IS THE LOGIN**
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -146,7 +146,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /users //SIGNUP
+  * URL: /api/users **THIS IS THE SIGNUP**
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -218,7 +218,7 @@ Returns all the spots.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots
+  * URL: /api/spots
   * Body: none
 
 * Successful Response
@@ -257,7 +257,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/currentuser/spots
+  * URL: /api/users/currentuser/spots
   * Body: none
 
 * Successful Response
@@ -296,7 +296,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots/:spotid
+  * URL: /api/spots/:spotid
   * Body: none
 
 * Successful Response
@@ -353,7 +353,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /spots/new
+  * URL: /api/spots/new
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -428,7 +428,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: /spots/:spotid
+  * URL: api/spots/:spotid
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -516,7 +516,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /spots/:spotid
+  * URL: api/spots/:spotid
   * Body: none
 
 * Successful Response
@@ -552,7 +552,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/currentuser/allreviews
+  * URL: /api/users/currentuser/allreviews
   * Body: none
 
 * Successful Response
@@ -604,7 +604,7 @@ Returns all the reviews that belong to a spot specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /reviews/spots/:spotid
+  * URL: /api/reviews/spots/:spotid
   * Body: none
 
 * Successful Response
@@ -657,7 +657,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /spots/:spotid/newreview
+  * URL: /api/reviews/spots/:spotid/newreview
   * Headers:
     * Content-Type: application/json
   * Body:

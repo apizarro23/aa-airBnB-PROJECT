@@ -56,7 +56,7 @@ router.get('/spots/:spotId', async (req, res) => {
     });
   }
 
-    if(currentSpot !== id) {
+    if(currentSpot.ownerId !== id) {
         res.status(403);
         res.json({
           "message": "User already has a review for this spot",
