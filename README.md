@@ -1233,7 +1233,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /reviews/:reviewid/addimage
+  * URL: images/reviews/:reviewid/addimage
   * Headers:
     * Content-Type: application/json
   * Body:

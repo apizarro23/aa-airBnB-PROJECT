@@ -61,8 +61,24 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
           "statusCode": 404
         });
     }
-    
+
     const {spotId, userId, startDate, endDate} = req.body
+
+    const err = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {},
+    };
+  
+    if (!startDate) err.errors.startDate = "Start date is required (YYYY-MM-DD)";
+    if (!endDate) err.errors.endDate = "End date is required (YYYY-MM-DD)";
+    if (startDate > endDate)
+      err.errors.endDate = "endDate cannot come before startDate";
+  
+    if (!startDate || !endDate || startDate > endDate) {
+      return res.status(400).json(err);
+    }
+    
 
     const allDates = await Booking.findAll({
         attributes: ['startDate', 'endDate'],
@@ -100,19 +116,92 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
 })
 
 // Edit a Booking
-router.put('./bookingId', requireAuth, async(req, res) => {
-  const {spotId, userId, startDate, endDate} = req.body;
+router.put("/:bookingId", requireAuth, async (req, res) => {
+  const bookingEdit = await Booking.findByPk(req.params.bookingId);
+
+  if (!bookingEdit) {
+    return res.status(404).json({
+      message: "Booking couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  if (bookingEdit.userId !== req.user.id) {
+    return res.status(401).json({
+      message: "You must be the owner of this booking to edit",
+      statusCode: 401,
+    });
+  }
+
+  const { spotId } = bookingEdit.toJSON();
+  const allBookings = await Booking.findAll({
+    attributes: ["startDate", "endDate"],
+    where: {
+      spotId,
+    },
+    raw: true,
+  });
+
+  const err = {
+    message: "Validation error",
+    statusCode: 400,
+    errors: {},
+  };
+  const { startDate, endDate } = req.body;
+
+  if (bookingEdit.endDate < Date.now()) {
+    return res.status(400).json({
+      message: "You cannot edit a past booking",
+      statusCode: 400,
+    });
+  }
+
+  if (!startDate) err.errors.startDate = "Start date is required";
+  if (!endDate) err.errors.endDate = "End date is required";
+  if (startDate > endDate)
+    err.errors.endDate = "endDate cannot come before startDate";
+
+  if (!startDate || !endDate || endDate < startDate) {
+    return res.status(400).json(err);
+  }
+
+  err.message =
+    "Sorry, this property is already booked for the specified dates";
+  err.statusCode = 403;
+  err.errors = {};
+
+  for (let dates of allBookings) {
+    let start = dates.startDate;
+    let end = dates.endDate;
+    if (startDate >= start && startDate <= end) {
+      err.errors.startDate = "Start date conflicts with an existing booking";
+    }
+    if (endDate >= start && endDate <= end) {
+      err.errors.endDate = "End date conflicts with an existing booking";
+    }
+  }
+
+  if ("endDate" in err.errors || "startDate" in err.errors) {
+    return res.status(403).json(err);
+  }
+
+  bookingEdit.startDate = startDate;
+  bookingEdit.endDate = endDate;
+
+  await bookingEdit.save();
+
+  res.json(bookingEdit);
+});
 
 
-})
+// Delete a Booking
+router.delete("/:bookingId", requireAuth, async (req, res) => {
+  let bookingId = req.params.bookingId;
+  let currentUserId = req.user.id;
 
-// Delete booking
-router.delete('./bookingId', requireAuth, async(req, res) => {
-  const bookingId = req.params.bookingId;
-  const currentUser = req.user;
-
-  const currentBooking = await Booking.findByPk(bookingId);
-  let spot = await Spot.findByPk(currentBooking.spotId)
+  let currentBooking = await Booking.findByPk(bookingId);
+  
+  let spot = await Spot.findByPk(currentBooking.spotId);
 
   if (!currentBooking) {
     res.status(404);
@@ -121,12 +210,15 @@ router.delete('./bookingId', requireAuth, async(req, res) => {
     });
   }
 
-  if (currentBooking.userId !== currentUser && spot.ownerId !== currentUser) {
+  if (
+    currentBooking.userId !== currentUserId &&
+    spot.ownerId !== currentUserId
+  ) {
     res.status(403);
     res.json({
-      message: "Only owners of the booking or spot can delete this booking",
+      message: "Only owners of the booking or property can delete this booking",
       statusCode: 403,
-    })
+    });
   }
 
   const { startDate } = currentBooking.toJSON();
@@ -138,16 +230,14 @@ router.delete('./bookingId', requireAuth, async(req, res) => {
     });
   }
 
-  res.json({
-    message: "Successfully deleted",
-    statusCode: 200,
-  })
-
   await currentBooking.destroy({
     where: { id: bookingId },
-  })
+  });
 
-
-})
+  return res.json({
+    message: "Successfully deleted",
+    statusCode: 200,
+  });
+});
 
 module.exports = router;
