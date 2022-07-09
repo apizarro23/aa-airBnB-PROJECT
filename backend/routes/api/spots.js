@@ -224,7 +224,7 @@ router.get('/', async(req, res) => {
         })
       };
 
-    if(ownerId !== req.user.id) {
+    if(ownerId !== req.user) {
         res.status(401)
         res.json({message: "You must be the owner to edit this spot"})
     }  
