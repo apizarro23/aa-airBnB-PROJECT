@@ -213,7 +213,7 @@ router.get('/', async(req, res) => {
 
     const spotToEdit = await Spot.findByPk(req.params.spotid)
 
-    const { id }= req.user
+    const { id } = req.user
 
 
     if (!spotToEdit) {
@@ -224,7 +224,7 @@ router.get('/', async(req, res) => {
         })
       };
 
-    if(spotToEdit !== req.user) {
+    if(ownerId !== req.user.id) {
         res.status(401)
         res.json({message: "You must be the owner to edit this spot"})
     }  
