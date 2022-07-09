@@ -223,11 +223,22 @@ router.get('/', async(req, res) => {
           statusCode: 404
         })
       };
+    
+    if(spotToEdit.ownerId !== req.user.id) {
+      res.status(403)
+      res.json({message: "You must be the owner to edit this spot"})
+    }
 
-    if(ownerId !== req.user) {
-        res.status(401)
-        res.json({message: "You must be the owner to edit this spot"})
-    }  
+    // let spot = await Spot.findByPk(spotId);
+    // if (!spot || spot.ownerId !== currentUserId) {
+    // return res.status(401).json({
+    //   "message": "You must be the owner to edit this spot."
+    //   });
+    // }  
+    // if(ownerId !== req.user) {
+    //     res.status(401)
+    //     res.json({message: "You must be the owner to edit this spot"})
+    // }  
 
     spotToEdit.address = address;
     spotToEdit.city = city;
