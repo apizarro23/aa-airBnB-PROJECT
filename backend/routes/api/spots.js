@@ -160,7 +160,7 @@ router.get('/', async(req, res) => {
     const spot = await Spot.findByPk(spotid, {
         include: [
             {model: Image, as:'images', attributes:['url']},
-            {model: User, as:'Owner', attributes:['id', 'firstName', 'lastname']}
+            {model: User, as:'Owner', attributes:['id', 'firstName', 'lastName']}
         ],
     });
 
