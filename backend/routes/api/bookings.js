@@ -49,87 +49,14 @@ router.get('/spots/:spotId', requireAuth, async (req, res) => {
   return res.json(currentSpotBookings);
 });  
 
-// // Create a booking bases on spotId
-// router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
-//     const {spotId, userId, startDate, endDate} = req.body
-//     let currentSpot = await Spot.findByPk(req.params.spotId);
-//     let user = req.user.id;
-//     // const id = req.user.id;
-
-    
-//     if (!currentSpot) {
-//         return res.status(404).json({
-//           "message": "Spot could not be found",
-//           "statusCode": 404
-//         });
-//     }
-
-//     if (user === userId) {
-//       return res.status(403).json({
-//         message: "Forbidden",
-//         statusCode: 403,
-//       });
-//     }
-
-
-//     const err = {
-//       message: "Validation error",
-//       statusCode: 400,
-//       errors: {},
-//     };
-  
-//     if (!startDate) err.errors.startDate = "Start date is required (YYYY-MM-DD)";
-//     if (!endDate) err.errors.endDate = "End date is required (YYYY-MM-DD)";
-//     if (startDate > endDate)
-//       err.errors.endDate = "endDate cannot come before startDate";
-  
-//     if (!startDate || !endDate || startDate > endDate) {
-//       return res.status(400).json(err);
-//     }
-    
-
-//     const allDates = await Booking.findAll({
-//         attributes: ['startDate', 'endDate'],
-//         raw: true,
-//         where: {
-//           spotId: req.params.spotId
-//         }
-//       })
-    
-//     err.message = "Sorry, this spot is already booked for the specified dates"
-//     err.statusCode = 400
-//     err.errors = {}
-//     for (let dates of allDates) {
-//         let start = dates.startDate
-//         let end = dates.endDate
-//         if ((startDate >= start && startDate <= end)) {
-//             err.errors.startDate = "Start date conflicts with an existing booking"
-//         }
-//         if ((endDate >= start && endDate <= end)) {
-//             err.errors.endDate = "End date conflicts with an existing booking"
-//         }
-//     }
-
-//     if ('endDate' in err.errors || 'startDate' in err.errors) {
-//         return res.status(400).json(err);
-//     }
-
-//     const booking = await Booking.create({
-//         spotId: req.params.spotId,
-//         userId: req.user.id,
-//         startDate,
-//         endDate
-//     })
-//     res.json(booking);
-// })
 
 //create a booking from a spot based on the spot's id
 
 router.post("/spots/:spotId/newbooking", requireAuth, async (req, res) => {
   const spotId = req.params.spotId;
-  bookingParams = req.body;
-  bookingParams.spotId = spotId;
-  bookingParams.userId = req.user.id;
+  bookingBody = req.body;
+  bookingBody.spotId = spotId;
+  bookingBody.userId = req.user.id;
 
   let spot = await Spot.findByPk(spotId);
 
@@ -139,14 +66,14 @@ router.post("/spots/:spotId/newbooking", requireAuth, async (req, res) => {
     });
   }
 
-  if (bookingParams.userId === spot.ownerId) {
+  if (bookingBody.userId === spot.ownerId) {
     return res.status(403).json({
-      message: "Forbidden",
+      message: "Spot must NOT belong to the current user",
       statusCode: 403,
     });
   }
 
-  if (bookingParams.endDate <= bookingParams.startDate) {
+  if (bookingBody.endDate <= bookingBody.startDate) {
     return res.status(400).json({
       message: "Validation error",
       statusCode: 400,
@@ -162,12 +89,12 @@ router.post("/spots/:spotId/newbooking", requireAuth, async (req, res) => {
       [Op.and]: [
         {
           startDate: {
-            [Op.lte]: bookingParams.endDate,
+            [Op.lte]: bookingBody.endDate,
           },
         },
         {
           endDate: {
-            [Op.gte]: bookingParams.startDate,
+            [Op.gte]: bookingBody.startDate,
           },
         },
       ],
@@ -185,7 +112,7 @@ router.post("/spots/:spotId/newbooking", requireAuth, async (req, res) => {
     });
   }
 
-  let booking = await Booking.create(bookingParams);
+  let booking = await Booking.create(bookingBody);
   booking = await Booking.findByPk(booking.id);
   return res.json(booking);
 });
