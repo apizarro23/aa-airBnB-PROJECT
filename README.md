@@ -738,7 +738,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: /reviews/:reviewid
+  * URL: /api/reviews/:reviewid
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -806,7 +806,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /reviews/:reviewid
+  * URL: /api/reviews/:reviewid
   * Body: none
 
 * Successful Response

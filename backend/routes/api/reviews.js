@@ -70,7 +70,7 @@ router.get('/spots/:spotId', async (req, res) => {
     },
   })
 
-  if(ownerHasReview.isLength >= 1) {
+  if(ownerHasReview.length >= 1) {
     return res.status(403).json({
       message: "User already has a review for this spot",
       statusCode: 403,
@@ -99,7 +99,13 @@ router.get('/spots/:spotId', async (req, res) => {
   router.put('/:reviewId', requireAuth, validateReview, async(req, res) => {
     const { userId, spotId, review, stars } = req.body
     const reviewEdit = await Review.findByPk(req.params.reviewId);
-    const currentUser = req.user
+    const currentUser = req.user.id
+
+    const err = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {},
+    };
 
     if (!reviewEdit) {
         res.status(404);
@@ -109,10 +115,17 @@ router.get('/spots/:spotId', async (req, res) => {
         });
       }
     
-    if(!currentUser) {
+    if(currentUser !== reviewEdit.userId) {
         res.status(401)
         res.json({message: "You must be the owner to delete this review"})
-    } 
+    }
+    
+    if (!review) err.errors.review = "Review text is required";
+    if (stars < 1 || stars > 5)
+        err.errors.stars = "Stars must be an integer from 1 to 5";
+    if (!review || !stars) {
+        return res.status(400).json(err);
+      }
 
     reviewEdit.review = review
     reviewEdit.stars = stars
