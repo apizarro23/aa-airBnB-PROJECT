@@ -8,7 +8,11 @@ const { Op, Sequelize } = require("sequelize");
 
 // add image to a spot based on Spot's id
 router.post("/spots/:spotId/addImage", requireAuth, async(req, res) => {
-    let currentSpotImages = await Spot.findByPk(req.params.spotId)
+    let currentSpotImages = await Spot.findByPk(req.params.spotId, {{
+      where: {
+        ownerId: req.user.id,
+      },
+    })
 
     const {url, spotId} = req.body;
 
