@@ -51,13 +51,13 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
       }
 
       
-      // if (review.userId !== currentUser) {
-      //   res.status(403);
-      //   res.json({
-      //     message: "Only owners of the spot can add an image",
-      //     statusCode: 403,
-      //   });
-      // }
+      if (review.userId !== currentUser) {
+        res.status(403);
+        res.json({
+          message: "Only owners of the spot can add an image",
+          statusCode: 403,
+        });
+      }
     
     const allImg = await Image.findAll({
         where: {
@@ -79,8 +79,7 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
     const newImage = await Image.create({
         url,
         reviewId: req.params.reviewId,
-        spotId: req.spotId,
-        imageableId: review.userId,
+        imageableId: allImg.length +1,
         imageableType: "Review"
     });
     
