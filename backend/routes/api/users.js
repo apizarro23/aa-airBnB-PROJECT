@@ -113,17 +113,28 @@ router.get("/currentuser/allreviews", requireAuth, async (req, res) => {
 
 // Get all of Current User's Bookings
 router.get("/currentuser/bookings", requireAuth, async (req, res) => {
+  const { id } = req.user;
   const allBookings = await Booking.findAll({
-    where: { id: req.user.id },
-      include: [
-        // { model: User, attributes: ["id", "firstName", "lastName"] },
-        { model: Spot, attributes: {
-          exclude: ["description", "createdAt", "updatedAt"],
-        }},
-      ],
-    },
-  );
-
+    include: [
+      {
+        model: Spot,
+        attributes: [
+          "id",
+          "ownerId",
+          "address",
+          "city",
+          "state",
+          "country",
+          "lat",
+          "lng",
+          "name",
+          "price",
+          "previewImage",
+        ],
+      },
+    ],
+    where: { userId: id },
+  });
   res.json(allBookings);
 });
 
