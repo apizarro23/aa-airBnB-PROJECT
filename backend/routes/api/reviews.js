@@ -72,7 +72,7 @@ router.get('/spots/:spotId', async (req, res) => {
 
   if (ownerHasReview.length >= 1) {
     return res.status(403).json({
-      message: "User already has a review for this property",
+      message: "User already has a review for this spot",
       statusCode: 403,
     });
   }
