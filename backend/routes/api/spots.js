@@ -153,6 +153,7 @@ router.get('/', async(req, res) => {
 
 
   //Get details from a spot from an id
+  
   router.get("/:spotid", async(req,res) => {
     const spotid = req.params.spotid;
 
@@ -193,6 +194,7 @@ router.get('/', async(req, res) => {
   })
 
   // Create a Spot
+
   router.post("/new", requireAuth, validateSpot, async(req, res) => {
     const {address, city, state, country, lat, lng, name, description, price, ownerId} = req.body
 
@@ -207,6 +209,7 @@ router.get('/', async(req, res) => {
 
 
   // Edit a spot
+
   router.put('/:spotid', requireAuth, validateSpot, async(req, res) => {
     const {address, city, state, country, lat, lng, name, description, price, ownerId} = req.body
 
@@ -244,7 +247,7 @@ router.get('/', async(req, res) => {
   })
 
 
-// Delete a Property
+// Delete a Spot
 
 router.delete("/:spotid", requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotid);

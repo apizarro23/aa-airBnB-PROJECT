@@ -842,7 +842,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/currentuser/bookings
+  * URL: /api/users/currentuser/bookings
   * Body: none
 
 * Successful Response
@@ -887,7 +887,7 @@ Return all the bookings for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /bookings/spots/:spotid
+  * URL: /api/bookings/spots/:spotid
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the spot.
@@ -956,7 +956,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: POST
-  * URL: bookings/spots/:spotid/newbooking
+  * URL: /api/bookings/spots/:spotid/newbooking
   * Body: 
 
     ```json
@@ -1038,7 +1038,7 @@ Update and return an existing booking.
 * Require proper authorization: Booking must belong to the current user
 * Request
   * Method: PUT
-  * URL: /bookings/:bookingid
+  * URL: api/bookings/:bookingid
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1136,7 +1136,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /bookings/:bookingid
+  * URL: /api/bookings/:bookingid
   * Body: none
 
 * Successful Response
@@ -1186,7 +1186,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: images/spots/:spotid/addimage
+  * URL: /api/images/spots/:spotid/addimage
   * Headers:
     * Content-Type: application/json
   * Body:
