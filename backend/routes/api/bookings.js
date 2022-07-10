@@ -62,6 +62,13 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
         });
     }
 
+    if (currentSpot.userId === spot.ownerId) {
+      return res.status(403).json({
+        message: "Forbidden",
+        statusCode: 403,
+      });
+    }
+
     const {spotId, userId, startDate, endDate} = req.body
 
     const err = {
@@ -89,7 +96,7 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
       })
     
     err.message = "Sorry, this spot is already booked for the specified dates"
-    err.statusCode = 403
+    err.statusCode = 400
     err.errors = {}
     for (let dates of allDates) {
         let start = dates.startDate
@@ -103,7 +110,7 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
     }
 
     if ('endDate' in err.errors || 'startDate' in err.errors) {
-        return res.status(403).json(err);
+        return res.status(400).json(err);
     }
 
     const booking = await Booking.create({
