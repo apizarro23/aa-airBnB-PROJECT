@@ -55,14 +55,22 @@ router.get('/spots/:spotId', async (req, res) => {
       "statusCode": 404
     });
   }
+    
+    const ownerHasReview = await Review.findAll({
+      where: {
+        [Op.and]: [
+          {spotId: req.params.spotId},
+          {userId: req.user.id}
+        ],
+      },
+    })
 
-    if(currentSpot.ownerId !== id) {
-        res.status(403);
-        res.json({
-          "message": "User already has a review for this spot",
-          "statusCode": 403
-        })
-      }
+    if(ownerHasReview.isLength >= 1) {
+      return res.status(403).json({
+        message: "User already has a review for this spot",
+        statusCode: 403,
+      })
+    }
     
     const newReview = await Review.create({
         spotId: spot,

@@ -5,8 +5,7 @@ const {Spot, Image, User, Review, sequelize} = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
-// const {Sequelize} = require('sequelize');
-// const sequelize = new Sequelize("sqlite::memory:");
+
 
 
 const validateSpot = [
@@ -240,8 +239,6 @@ router.get('/', async(req, res) => {
     spotToEdit.price = price;
 
     await spotToEdit.save({ownerId: id, address, city, state, country, lat, lng, name, description, price});
-
-    // const spotToEdit = await Spot.create({ownerId: id, address, city, state, country, lat, lng, name, description, price})
 
     return res.json(spotToEdit)
   })
