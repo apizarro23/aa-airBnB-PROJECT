@@ -51,10 +51,13 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
       }
 
       
-      if(!currentUser) {
-          res.status(401)
-          res.json({message: "You must be the owner to delete this review"})
-        } 
+      if (review.userId !== currentUser) {
+        res.status(403);
+        res.json({
+          message: "Only owners of the spot can add an image",
+          statusCode: 403,
+        });
+      }
     
     const allImg = await Image.findAll({
         where: {
@@ -75,6 +78,8 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
 
     const newImage = await Image.create({
         url,
+        reviewId: req.params.reviewId,
+        spotId: req.spotId.id,
         imageableId: review.userId,
         imageableType: "Review"
     });
