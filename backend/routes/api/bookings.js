@@ -124,7 +124,7 @@ router.get('/spots/:spotId', requireAuth, async (req, res) => {
 
 //create a booking from a spot based on the spot's id
 
-router.post("/:spotId", requireAuth, async (req, res) => {
+router.post("/spots/:spotId/newbooking", requireAuth, async (req, res) => {
   const spotId = req.params.spotId;
   bookingParams = req.body;
   bookingParams.spotId = spotId;
