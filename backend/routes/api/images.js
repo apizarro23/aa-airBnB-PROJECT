@@ -29,8 +29,6 @@ router.post("/spots/:spotId/addImage", requireAuth, async(req, res) => {
         imageableType: "Spot",
         spotId: req.params.spotId
     });
-
-    newImage = newImage.toJSON();
     
     res.json(newImage);
 })
