@@ -52,7 +52,7 @@ router.get('/spots/:spotId', requireAuth, async (req, res) => {
 router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
     const {spotId, userId, startDate, endDate} = req.body
     let currentSpot = await Spot.findByPk(req.params.spotId);
-    let spot = await Spot.findByPk(spotId);
+    let user = req.user.id;
     // const id = req.user.id;
 
     
@@ -63,7 +63,7 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
         });
     }
 
-    if (userId === spot) {
+    if (user === userId) {
       return res.status(403).json({
         message: "Forbidden",
         statusCode: 403,
