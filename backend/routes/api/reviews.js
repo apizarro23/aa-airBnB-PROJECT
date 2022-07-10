@@ -3,6 +3,7 @@ const { setTokenCookie, requireAuth, restoreUser,} = require("../../utils/auth")
 const { Image, Review, Spot, User, sequelize } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
+const { Op } = require("sequelize");
 const router = express.Router();
 
 const validateReview = [
