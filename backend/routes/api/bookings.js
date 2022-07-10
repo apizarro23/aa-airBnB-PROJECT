@@ -63,7 +63,7 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
         });
     }
 
-    if (userId === spot.ownerId) {
+    if (userId === spot) {
       return res.status(403).json({
         message: "Forbidden",
         statusCode: 403,
