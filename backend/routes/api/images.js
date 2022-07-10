@@ -37,7 +37,7 @@ router.post("/spots/:spotId/addImage", requireAuth, async(req, res) => {
 router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
     let currentReviewImages = await Review.findByPk(req.params.reviewId)
 
-    const currentUser = req.user.id;
+    const {id} = req.user;
     const review = req.params.reviewId;
 
     const {url, spotId} = req.body;
@@ -51,7 +51,7 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
       }
 
       
-      if (review.userId !== currentUser) {
+      if (review.userId !== id) {
         res.status(403);
         res.json({
           message: "Only owners of the spot can add an image",
