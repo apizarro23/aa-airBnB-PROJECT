@@ -13,7 +13,7 @@ router.post("/spots/:spotId/addImage", requireAuth, async(req, res) => {
     const currentSpotId = req.params.spotId;
     const id = req.user.id;
 
-    const {url, reviewId, spotId} = req.body;
+    const {url,  spotId} = req.body;
 
 
     if (!currentSpotImages) {
@@ -40,7 +40,7 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
     const currentUser = req.user.id;
     const review = req.params.reviewId;
 
-    const {url, reviewId, spotId} = req.body;
+    const {url, spotId} = req.body;
 
 
     if (!currentReviewImages) {
