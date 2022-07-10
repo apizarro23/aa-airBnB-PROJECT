@@ -10,10 +10,7 @@ const { Op, Sequelize } = require("sequelize");
 router.post("/spots/:spotId/addImage", requireAuth, async(req, res) => {
     let currentSpotImages = await Spot.findByPk(req.params.spotId)
 
-    const currentSpotId = req.params.spotId;
-    const id = req.user.id;
-
-    const {url,  spotId} = req.body;
+    const {url, spotId} = req.body;
 
 
     if (!currentSpotImages) {
@@ -22,10 +19,16 @@ router.post("/spots/:spotId/addImage", requireAuth, async(req, res) => {
           "statusCode": 404
         });
       }
+
+    const allImg = await Image.findAll({
+        where: {
+          [Op.and]: [{ spotId: req.params.spotId }, { imageableType: "Spot" }],
+        },
+    });
     
     const newImage = await Image.create({
         url,
-        imageableId: currentSpotImages.ownerId,
+        imageableId: allImg.length + 1,
         imageableType: "Spot",
         spotId: req.params.spotId
     });
