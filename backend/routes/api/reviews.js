@@ -43,10 +43,16 @@ router.get('/spots/:spotId', async (req, res) => {
 
 
   //create a review for a spot based on spotid
-  router.post('/spots/:spotId/newreview', requireAuth, validateReview, async (req, res) => {     
+  router.post('/spots/:spotId/newreview', requireAuth, async (req, res) => {     
     let currentSpot = await Spot.findByPk(req.params.spotId);
     const spot = req.params.spotId
     const id = req.user.id;
+
+    const err = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {},
+    };
 
     const {review, stars, userId, spotId} = req.body;
 
@@ -72,10 +78,17 @@ router.get('/spots/:spotId', async (req, res) => {
         statusCode: 403,
       })
     }
+
+    if (!review) err.errors.review = "Review text is required";
+    if (stars < 1 || stars > 5)
+      err.errors.stars = "Stars must be an integer from 1 to 5";
+    if (!review || !stars) {
+      return res.status(400).json(err);
+    }
     
     const newReview = await Review.create({
-        spotId: spot,
-        userId: id,
+        spotId: req.params.spotId,
+        userId: req.user.id,
         review,
         stars,
   })
