@@ -45,8 +45,7 @@ router.get('/spots/:spotId', async (req, res) => {
   //create a review for a spot based on spotid
   router.post('/spots/:spotId/newreview', requireAuth, async (req, res) => {     
     let currentSpot = await Spot.findByPk(req.params.spotId);
-    const spot = req.params.spotId
-    const id = req.user.id;
+    const {review, stars, userId, spotId} = req.body;
 
     const err = {
       message: "Validation error",
@@ -54,7 +53,6 @@ router.get('/spots/:spotId', async (req, res) => {
       errors: {},
     };
 
-    const {review, stars, userId, spotId} = req.body;
 
   if (!currentSpot) {
     return res.status(404).json({
@@ -63,34 +61,34 @@ router.get('/spots/:spotId', async (req, res) => {
     });
   }
     
-    const ownerHasReview = await Review.findAll({
-      where: {
-        [Op.and]: [
-          {spotId: req.params.spotId},
-          {userId: req.user.id}
-        ],
-      },
+  const ownerHasReview = await Review.findAll({
+    where: {
+      [Op.and]: [
+        {spotId: req.params.spotId},
+        {userId: req.user.id}
+      ],
+    },
+  })
+
+  if(ownerHasReview.isLength >= 1) {
+    return res.status(403).json({
+      message: "User already has a review for this spot",
+      statusCode: 403,
     })
+  }
 
-    if(ownerHasReview.isLength >= 1) {
-      return res.status(403).json({
-        message: "User already has a review for this spot",
-        statusCode: 403,
-      })
-    }
-
-    if (!review) err.errors.review = "Review text is required";
-    if (stars < 1 || stars > 5)
+  if (!review) err.errors.review = "Review text is required";
+  if (stars < 1 || stars > 5)
       err.errors.stars = "Stars must be an integer from 1 to 5";
-    if (!review || !stars) {
+  if (!review || !stars) {
       return res.status(400).json(err);
     }
     
-    const newReview = await Review.create({
-        spotId: req.params.spotId,
-        userId: req.user.id,
-        review,
-        stars,
+  const newReview = await Review.create({
+      spotId: req.params.spotId,
+      userId: req.user.id,
+      review,
+      stars,
   })
 
   return res.json(newReview)
