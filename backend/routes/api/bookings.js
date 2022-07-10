@@ -51,8 +51,9 @@ router.get('/spots/:spotId', requireAuth, async (req, res) => {
 // Create a booking bases on spotId
 router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
     let currentSpot = await Spot.findByPk(req.params.spotId);
-    const spot = req.params.spotId
-    const id = req.user.id;
+    let spot = await Spot.findByPk(spotId);
+    // const id = req.user.id;
+    const {spotId, userId, startDate, endDate} = req.body
 
     
     if (!currentSpot) {
@@ -62,14 +63,13 @@ router.post('/spots/:spotId/newbooking', requireAuth, async(req, res) => {
         });
     }
 
-    if (currentSpot.userId === spot.ownerId) {
+    if (userId === spot.ownerId) {
       return res.status(403).json({
         message: "Forbidden",
         statusCode: 403,
       });
     }
 
-    const {spotId, userId, startDate, endDate} = req.body
 
     const err = {
       message: "Validation error",
