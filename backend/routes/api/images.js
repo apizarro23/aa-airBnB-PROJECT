@@ -100,12 +100,12 @@ router.post("/reviews/:reviewId/addimage", requireAuth, async (req, res) => {
     });
   }
 
-  if (review.userId !== currentUserId) {
-    res.status(403);
-    res.json({
-      message: "Authorization Required",
-    });
-  }
+  // if (review.userId !== currentUserId) {
+  //   res.status(403);
+  //   res.json({
+  //     message: "Authorization Required",
+  //   });
+  // }
 
   const allImg = await Image.findAll({
     where: {
