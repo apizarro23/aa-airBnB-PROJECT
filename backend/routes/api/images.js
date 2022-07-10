@@ -50,15 +50,6 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
           "statusCode": 404
         });
       }
-
-      
-      if (currentReviewImages.userId !== id) {
-        res.status(403);
-        res.json({
-          message: "Only owners of the spot can add an image",
-          statusCode: 403,
-        });
-      }
     
     const allImg = await Image.findAll({
         where: {
