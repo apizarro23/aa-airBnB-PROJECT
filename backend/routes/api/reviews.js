@@ -96,7 +96,7 @@ router.get('/spots/:spotId', async (req, res) => {
   })
 
   // Edit Review
-  router.put('/:reviewId', requireAuth, validateReview, async(req, res) => {
+  router.put('/:reviewId', requireAuth, async(req, res) => {
     const { userId, spotId, review, stars } = req.body
     const reviewEdit = await Review.findByPk(req.params.reviewId);
     const currentUser = req.user.id
