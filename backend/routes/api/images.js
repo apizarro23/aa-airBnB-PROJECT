@@ -51,7 +51,7 @@ router.post("/reviews/:reviewId/addImage", requireAuth, async(req, res) => {
       }
 
       
-      if (review.userId !== currentUser) {
+      if (req.review.userId !== currentUser) {
         res.status(403);
         res.json({
           message: "Only owners of the spot can add an image",
