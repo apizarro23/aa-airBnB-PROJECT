@@ -27,7 +27,7 @@ module.exports = {
   down: async (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Bookings', {
-      address: { [Op.in]: ['2022-10-01', '2022-10-06', '2022-10-11'] }
+      startDate: { [Op.in]: ['2022-10-01', '2022-10-06', '2022-10-11'] }
     }, {});
   }
 };

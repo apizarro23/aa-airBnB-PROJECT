@@ -59,8 +59,9 @@ module.exports = (sequelize, DataTypes) => {
       )
       User.hasMany(
         models.Spot,
-        { foreignKey: 'ownerId' }
-      )
+        { foreignKey: 'ownerId',
+        as: 'Owner' 
+      })
       User.hasMany(
         models.Review,
         { foreignKey: 'userId' }
