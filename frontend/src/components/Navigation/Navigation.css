@@ -1,5 +1,92 @@
-/* ADD CSS HERE */
-.test001 {
-    display: grid;
-    background-color: red;
+
+.navBar {
+    color: gray;
+    background-color: white;
+    margin-bottom: 10px;
+    border: white;
+    border-radius: 20px;
+    height: 40px;
+    width: 80px;
+    padding-left: 10px;
+    font-size: 15px;
+    display: flex;
+    text-align: start;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #DDDDDD;
 }
+
+.nav_bars_icon {
+    color: #595959;
+    font-size: 17px;
+    padding-left: 5px;
+}
+
+.user_icon{
+    color: #717171;
+    padding-right: px;
+    font-size: 25px;
+}
+
+#menu{
+    cursor: pointer;
+    position: absolute;
+    top: 60px;
+    right: 95px;
+    width: 200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#menu > * {
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    letter-spacing: .5px;
+}
+
+#dropdown1, 
+#dropdown2 {
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+}
+
+#nav_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    position: relative;
+}
+
+#home {
+    background-color: white;
+    display: flex;
+    border-bottom: .5px solid #D3D3D3;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    height: 70px;
+    gap: 10px;
+}
+
+#logo {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+ #logo > a >img {
+    height: 50px;
+ }
