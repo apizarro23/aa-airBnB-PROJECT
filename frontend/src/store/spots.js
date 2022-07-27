@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_SPOT = "spots/get-spot";
 const GET_ALL_SPOTS = "spots/get-all-spots";
-const ADD = "spots/add"
+const CREATE = "spots/add"
 
 const getAll = (spots) => {
   return {
@@ -21,7 +21,7 @@ const getSpot = (spot) => {
 
 const addSpot = (spot) => {
   return {
-    type: ADD,
+    type: CREATE,
     spot
   }
 }
@@ -69,13 +69,13 @@ const spotsReducer = (state = initialState, action) => {
     case GET_ALL_SPOTS: {
       const allSpots = {};
       action.spots.forEach((spot) => (allSpots[spot.id] = spot));
-      return { ...allSpots, ...state };
+      return { ...allSpots};
     }
     case GET_SPOT: {
       const spot = action.spot;
       return { ...spot, ...state };
     }
-    case ADD: {
+    case CREATE: {
       let newState = {...state};
       newState[action.spot.id] = action.spot;
       return newState;

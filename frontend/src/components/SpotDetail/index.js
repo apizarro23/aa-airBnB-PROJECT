@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findASpot } from "../../store/spots";
 import "./SpotsDetail.css"
@@ -9,7 +9,6 @@ const SpotsDetail = () => {
   spotId = Number(spotId);
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots[spotId]);
-  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(findASpot(spotId));

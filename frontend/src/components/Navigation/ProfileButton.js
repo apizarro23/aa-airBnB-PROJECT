@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
 import * as sessionActions from "../../store/session";
 
 import './Navigation.css'
@@ -30,21 +32,24 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
-  return (
+ return (
     <>
-
-      <button onClick={openMenu}>
-        <i class="fa-solid fa-user"></i>
+    <div className="button">
+      <button className="navBar" onClick={openMenu}>
+        <i className="fas fa-bars nav_bars_icon"></i>
+        <i className="fas fa-user-circle user_icon"></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div id="menu">
+          <Link to="/spots/create" id="dropdown1">
+            Create a Spot
+          </Link>
+          <div onClick={logout} id="dropdown2">
+            Log out
+          </div>
+        </div>
       )}
+    </div>
     </>
   );
 }
