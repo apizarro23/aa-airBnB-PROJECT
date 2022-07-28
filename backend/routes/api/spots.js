@@ -190,7 +190,7 @@ router.get("/:id", async (req, res) => {
 
 //create a spot
 router.post("/", requireAuth, async (req, res) => {
-  const { address, city, state, country, lat, lng, name, description, price } = req.body;
+  const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body;
 
   const error = {
     "message": "Validation Error",
@@ -207,8 +207,9 @@ router.post("/", requireAuth, async (req, res) => {
   if (!name) error.errors.name = "Name must be less than 50 characters"
   if (!description) error.errors.description = "Description is required"
   if (!price) error.errors.price = "Price per day is required"
+  if (!previewImage) error.errors.previewImage = "Preview Image is required"
 
-  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price || !previewImage) {
     res.statusCode = 400;
     return res.json(error);
   }
@@ -223,7 +224,8 @@ router.post("/", requireAuth, async (req, res) => {
     lng,
     name,
     description,
-    price
+    price,
+    previewImage
   });
 
   res.json(spot);
@@ -232,7 +234,7 @@ router.post("/", requireAuth, async (req, res) => {
 //edit a spot
 router.put("/:spotId", requireAuth, async (req, res) => {
   const { spotId } = req.params;
-  const { address, city, state, country, lat, lng, name, description, price } = req.body;
+  const { address, city, state, country, lat, lng, name, description, price, previewImage } = req.body;
   const spot = await Spot.findByPk(spotId);
 
   if (!spot) {
@@ -257,8 +259,9 @@ router.put("/:spotId", requireAuth, async (req, res) => {
   if (!name) error.errors.name = "Name must be less than 50 characters"
   if (!description) error.errors.description = "Description is required"
   if (!price) error.errors.price = "Price per day is required"
+  if (!previewImage) error.errors.previewImage = "Preview Image is required"
 
-  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+  if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price || !previewImage) {
     res.statusCode = 400;
     return res.json(error);
   }
@@ -271,6 +274,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
   spot.name = name
   spot.description = description
   spot.price = price
+  spot.previewImage = previewImage
 
   await spot.save()
   res.json(spot);

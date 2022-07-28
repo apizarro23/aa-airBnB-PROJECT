@@ -7,8 +7,10 @@ import { useHistory } from "react-router-dom";
 const EditSpot = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+
   let { spotId } = useParams();
   spotId = Number(spotId);
+  
   const spot = useSelector((state) => state.spots[spotId]);
   const [name, setName] = useState(spot?.name);
   const [address, setAddress] = useState(spot?.address);
@@ -53,13 +55,7 @@ const EditSpot = () => {
     return dispatch(spotActions.spotEdit(data))
     .then(() => {
       history.push(`/spots/${spot.id}`)
-      // <Redirect to={`/spots/${}`} />
-    })
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   if (data && data.errors) setErrors(data.errors);
-    // });
-    
+    })    
   };
 
   return (
