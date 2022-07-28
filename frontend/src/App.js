@@ -10,6 +10,8 @@ import Navigation from "./components/Navigation";
 import SpotDetail from "./components/SpotDetail";
 import SpotsPage from "./components/Spots";
 import NewSpotForm from "./components/SpotsForm";
+import EditSpot from "./components/SpotEdit";
+import UserSpots from "./components/UserSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +49,16 @@ function App() {
           {/* GET SPOT BY ID */}
           <Route exact path="/spots/:spotId">
             <SpotDetail />
+          </Route>
+
+          {/* EDIT SPOT  */}
+          <Route exact path="/spots/:spotId/edit">
+            <EditSpot />
+          </Route>
+
+          {/* GET SPOT BY USER */}
+          <Route exact path="/currentUser/spots">
+            <UserSpots />
           </Route>
 
         </Switch>

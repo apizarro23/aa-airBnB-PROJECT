@@ -1,5 +1,8 @@
 /* ADD CSS HERE */
-.spotForm label{
+
+.editSpot label {
     display: flex;
     padding: 5px;
+    justify-content: center;
+    
 }
