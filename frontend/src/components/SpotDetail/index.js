@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+
+//SPOTS CRUD MIGRATION
 import { findASpot } from "../../store/spots";
 import { spotDelete } from "../../store/spots";
 import "./SpotsDetail.css";
+
+//REVIEWS CRUD MIGRATION
+import { getSpotReviews } from "../../store/reviews";
 
 const SpotsDetail = () => {
   const history = useHistory();
@@ -14,7 +19,7 @@ const SpotsDetail = () => {
   const sessionUser = useSelector((state) => state.session.user);
   console.log(sessionUser, 'SESSION USER!!!!!!!')
   // console.log(sessionUser.user, 'THIS IS THE ACTIVE USER.......')
-  console.log(spot, 'THIS IS THE')
+  console.log(spot, 'THIS IS THE SPOT')
   
   useEffect(() => {
     if (!spot) {
@@ -59,6 +64,9 @@ const SpotsDetail = () => {
             </div>
           )}
       </div>
+        <h2 className="reviews">
+          ADD REVIEWS HERE
+        </h2>
     </>
   ) 
   );

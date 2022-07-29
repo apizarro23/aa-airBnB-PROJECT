@@ -89,3 +89,9 @@
  #logo > a >img {
     height: 50px;
  }
+
+#signUp > a {
+    display: flex;
+    justify-content: center;
+    background-color: red;
+}

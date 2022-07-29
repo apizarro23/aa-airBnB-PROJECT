@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const GET_SPOT = "spots/get-spot";
+// const GET_SPOT = "spots/get-spot";
 const GET_ALL_SPOTS = "spots/get-all-spots"
 const GET_USER_SPOTS = "spots/get-user-spots"
 const CREATE = "spots/add"
@@ -50,6 +50,8 @@ const deleteSpot = (spotId) => {
   };
 };
 
+
+//ALL THUNKS BELOW UNTIL REACHING REDUCER
 //GET ALL SPOTS
 export const getAllSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
