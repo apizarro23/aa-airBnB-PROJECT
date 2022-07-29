@@ -13,6 +13,9 @@ import NewSpotForm from "./components/SpotsForm";
 import EditSpot from "./components/SpotEdit";
 import UserSpots from "./components/UserSpots";
 
+//REVIEWS CRUD IMPORTS
+import CreateReview from "./components/SpotDetail/createReview";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -59,6 +62,11 @@ function App() {
           {/* GET SPOT BY USER */}
           <Route exact path="/currentUser/spots">
             <UserSpots />
+          </Route>
+
+          {/* CREATE REVIEW */}
+          <Route exact path="/spots/:spotId/createReview">
+            <CreateReview />
           </Route>
 
         </Switch>

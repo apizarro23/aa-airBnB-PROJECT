@@ -8,7 +8,8 @@ import { spotDelete } from "../../store/spots";
 import "./SpotsDetail.css";
 
 //REVIEWS CRUD MIGRATION
-import { getSpotReviews } from "../../store/reviews";
+import getSpotReviews from "../../store/reviews";
+import SpotReviews from "./spotReviews";
 
 const SpotsDetail = () => {
   const history = useHistory();
@@ -17,9 +18,9 @@ const SpotsDetail = () => {
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser, 'SESSION USER!!!!!!!')
+  // console.log(sessionUser, 'SESSION USER!!!!!!!')
   // console.log(sessionUser.user, 'THIS IS THE ACTIVE USER.......')
-  console.log(spot, 'THIS IS THE SPOT')
+  // console.log(spot, 'THIS IS THE SPOT')
   
   useEffect(() => {
     if (!spot) {
@@ -36,6 +37,11 @@ const SpotsDetail = () => {
   const handleEditClick = (e) => {
     e.preventDefault();
     history.push(`/spots/${spotId}/edit`);
+  };
+
+  const handleCreateReview = (e) => {
+    e.preventDefault();
+    history.push(`/spots/${spotId}/createReview`);
   };
 
 
@@ -64,9 +70,9 @@ const SpotsDetail = () => {
             </div>
           )}
       </div>
-        <h2 className="reviews">
-          ADD REVIEWS HERE
-        </h2>
+        <div>
+            <SpotReviews spotId={spotId}/>
+        </div>
     </>
   ) 
   );

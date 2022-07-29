@@ -1,70 +1,70 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
-import {createReview} from '../../store/review'
-import './createReview.css'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Redirect, useParams } from "react-router-dom";
+import * as reviewActions from "../../store/reviews";
 
 
 const CreateReview = () => {
     const dispatch = useDispatch();
-    const history = useHistory()
-    let { id } = useParams()
-    id = Number(id)
-    const user = useSelector((state) => state.session.user)
-
-    const [review, setReview] = useState('')
-    const [stars, setStars] = useState('')
-    const [errors, setErrors] = useState([])
-
-    // if (!user) return <Redirect to="/" />;
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        setErrors([])
-
-        const newReview = {
-            review,
-            stars
-        }
-
-        history.push(`/spots/${id}`)
-        //history.push(`/`)
-        return dispatch(createReview(newReview, id))
+    let { spotId } = useParams();
+    spotId = Number(spotId);
+  
+    const [reviewMessage, setReviewMessage] = useState("");
+    const [stars, setStars] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+  
+    if (submitSuccess) {
+      return <Redirect to={`/spots/${spotId}`} />;
     }
-
-
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setErrors([]);
+      let review = {
+        review: reviewMessage,
+        stars: stars,
+      };
+      return dispatch(reviewActions.createReviews(spotId, review))
+        .then(async (res) => {
+          setSubmitSuccess(true);
+        })
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        });
+    };
+  
     return (
-        <form onSubmit={handleSubmit} className='createReview'>
-            <ul>
-                {errors.map((error, id) => (
-                    <li key={id}>{error}</li>
-                ))}
-            </ul>
-            <label>
-                Leave Your Review Here:
-                <input
-                type="text"
-                placeholder='Review'
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-                required
-                />
-            </label>
-            <label>
-                Stars:
-                <input
-                type="text"
-                placeholder='Stars'
-                value={stars}
-                onChange={(e) => setStars(e.target.value)}
-                required
-                />
-            </label>
-
-            <button type="submit">Create Review</button>
-        </form>
-    )
-}
-
-export default CreateReview
+      <form className="spotsReview" onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <label>
+          Message:
+          <input
+            type="text"
+            placeholder="Review Message"
+            value={reviewMessage}
+            onChange={(e) => setReviewMessage(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Stars:
+          <input
+            type="text"
+            placeholder="Rating"
+            value={stars}
+            onChange={(e) => setStars(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Create Review</button>
+      </form>
+    );
+  };
+  
+  export default CreateReview;
