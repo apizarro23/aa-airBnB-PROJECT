@@ -15,6 +15,8 @@ import UserSpots from "./components/UserSpots";
 
 //REVIEWS CRUD IMPORTS
 import CreateReview from "./components/SpotDetail/createReview";
+import UserReviews from "./components/UserSpots/userReviews";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +69,11 @@ function App() {
           {/* CREATE REVIEW */}
           <Route exact path="/spots/:spotId/createReview">
             <CreateReview />
+          </Route>
+          
+          {/* CURRENT USER REVIEWS */}
+          <Route exact path="/spots/currentUser/reviews">
+            <UserReviews />
           </Route>
 
         </Switch>

@@ -70,6 +70,7 @@ export const findASpot = (spotId) => async (dispatch) => {
   if (response.ok) {
     const spot = await response.json();
     dispatch(addSpot(spot));
+    return spot
   }
   return response;
 };

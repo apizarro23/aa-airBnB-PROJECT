@@ -18,6 +18,11 @@ const SpotsDetail = () => {
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
+  const reviews = useSelector((state) => Object.values(state.reviews));
+
+  const spots = useSelector((state) => state.spots);
+  const spotsString = JSON.stringify(spots);
+  const reviewsString = JSON.stringify(reviews);
   // console.log(sessionUser, 'SESSION USER!!!!!!!')
   // console.log(sessionUser.user, 'THIS IS THE ACTIVE USER.......')
   // console.log(spot, 'THIS IS THE SPOT')
@@ -41,7 +46,7 @@ const SpotsDetail = () => {
 
   const handleCreateReview = (e) => {
     e.preventDefault();
-    history.push(`/spots/${spotId}/createReview`);
+    history.push(`/spots/${spotId}`);
   };
 
 

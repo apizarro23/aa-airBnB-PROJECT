@@ -88,7 +88,7 @@ router.post(
     res.json(spots)
   });
 
-  //Get all reviews of the current user
+  // Get all reviews of the current user
 
 router.get("/currentuser/allreviews", requireAuth, async (req, res) => {
   const review = await Review.findAll({

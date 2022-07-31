@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import * as reviewActions from "../../store/reviews";
 
 
 const CreateReview = () => {
+  const history = useHistory();
     const dispatch = useDispatch();
     let { spotId } = useParams();
     spotId = Number(spotId);
@@ -25,6 +26,9 @@ const CreateReview = () => {
         review: reviewMessage,
         stars: stars,
       };
+      
+      // history.push(`/spots/${spotId}`)
+
       return dispatch(reviewActions.createReviews(spotId, review))
         .then(async (res) => {
           setSubmitSuccess(true);
@@ -46,7 +50,7 @@ const CreateReview = () => {
           Message:
           <input
             type="text"
-            placeholder="Review Message"
+            placeholder="ENTER REVIEW HERE"
             value={reviewMessage}
             onChange={(e) => setReviewMessage(e.target.value)}
             required
@@ -56,7 +60,7 @@ const CreateReview = () => {
           Stars:
           <input
             type="text"
-            placeholder="Rating"
+            placeholder="RATE FROM 1 - 5"
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required

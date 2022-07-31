@@ -41,6 +41,8 @@ export const createReviews = (spotId, review) => async (dispatch) => {
     body: JSON.stringify(review),
   });
 
+  console.log(spotId,'THIS IS THE SPOT ID!!!!!!!!!!!!')
+
   if (response.ok) {
     const newReview = await response.json();
     dispatch(createReviewAction(newReview));
@@ -68,9 +70,9 @@ export const getUserReviews = () => async (dispatch) => {
   const response = await csrfFetch(`/api/users/currentuser/allreviews`);
   if (response.ok) {
     const userReviews = await response.json();
-    console.log(userReviews);
+    console.log(userReviews, 'LOOK HEREEEEEEEEEEEEEEEEEEEE');
     dispatch(loadUserReviews(userReviews));
-    return userReviews;
+    // return userReviews;
   }
   return response;
 };
@@ -94,25 +96,25 @@ const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case DELETE_REVIEW: {
       const newState = { ...state };
-      delete newState[action.res];
+      delete newState[action.review];
       return newState;
     };
     case POST_REVIEWS: {
       const newState = { ...state };
-      newState[action.review.id] = action.review;
+      newState[action.review] = action.review;
       return newState;
     };
     case LOAD_REVIEWS: {
       const allReviews = {};
       action.reviews.forEach((review) => (allReviews[review.id] = review));
-      let reviews = {...allReviews};
-      return reviews;
+      // let reviews = {...allReviews};
+      return allReviews;
     };
     case LOAD_USER_REVIEWS: {
       const newState = {};
       action.reviews.forEach(reviews => newState[reviews.id] = reviews);
-      let allReviews = {...newState};
-      return allReviews;
+      // let allReviews = {...newState};
+      return newState;
     }
     default:
       return state;
