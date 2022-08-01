@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserReviews, deleteReview } from "../../store/reviews";
-import './CurrentUser.css'
 
 function UsersReviews() {
   const dispatch = useDispatch();

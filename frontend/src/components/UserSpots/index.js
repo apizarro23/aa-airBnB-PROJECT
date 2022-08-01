@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrentUserSpots } from "../../store/spots";
-import "./CurrentUser.css"
+import './userSpots.css'
 
 const UserSpots = () => {
   const history = useHistory();
