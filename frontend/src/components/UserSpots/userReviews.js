@@ -8,7 +8,7 @@ function UsersReviews() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userReviewsObj = useSelector((state) => state.reviews);
-  const userReviews = Object.values(userReviewsObj);
+  const banana = Object.values(userReviewsObj);
   const [isLoaded, setIsloaded] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function UsersReviews() {
     history.push("/spots/currentUser/reviews");
   };
 
-  if (userReviews.length === 0) {
+  if (banana.length === 0) {
     return <p>Oh no! No reviews yet.</p>;
   }
 
@@ -30,7 +30,7 @@ function UsersReviews() {
     isLoaded && (
       <div>
         <h2>My Reviews</h2>
-        {userReviews.map((review) => (
+        {banana.map((review) => (
           <div key={review.id} className="ind-review">
             <div className="review-list-rating">
               <i className="fa-solid fa-star"></i>

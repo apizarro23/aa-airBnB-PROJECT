@@ -15,8 +15,8 @@ import UserSpots from "./components/UserSpots";
 
 //REVIEWS CRUD IMPORTS
 import CreateReview from "./components/SpotDetail/CreateReview";
-import UserReviews from "./components/UserSpots/UserReviews";
-
+// import UserReviews from "./components/UserSpots/UserReviews";
+import UserReviews from "./components/UserSpots/UserReviews"
 
 function App() {
   const dispatch = useDispatch();

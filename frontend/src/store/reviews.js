@@ -69,7 +69,6 @@ export const getUserReviews = () => async (dispatch) => {
   if (response.ok) {
     const userReviews = await response.json();
     dispatch(loadUserReviews(userReviews));
-    // return userReviews;
   }
   return response;
 };
