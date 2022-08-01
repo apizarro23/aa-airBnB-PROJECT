@@ -91,8 +91,10 @@ router.post(
   // Get all reviews of the current user
 
 router.get("/currentuser/allreviews", requireAuth, async (req, res) => {
+  const { id } = req.user
+
   const review = await Review.findAll({
-    where: { id: req.user.id },
+    where: { userId: id },
       include: [
         { model: User, attributes: ["id", "firstName", "lastName"] },
         { model: Spot, attributes: {
