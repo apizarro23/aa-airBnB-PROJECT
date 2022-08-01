@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
 
+  "engines": {
+    "node": "16.16.0"
+  },
+
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
