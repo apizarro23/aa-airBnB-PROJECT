@@ -67,6 +67,12 @@ router.post(
     }
   );
 
+  //get all users
+router.get("/", async (req, res) => {
+  let users = await User.findAll();
+  return res.json(users);
+})
+
   //Get Current User
   router.get('/currentuser', requireAuth, async (req, res) => {
     const getCurrent = {

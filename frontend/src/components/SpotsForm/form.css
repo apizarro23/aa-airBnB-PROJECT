@@ -1,5 +1,47 @@
-/* ADD CSS HERE */
-.spotForm label{
-    display: flex;
-    padding: 5px;
+.spotForm label {
+  width: 100%;
+  margin: 8px 0;
+  display: flex;
+  float: left;
+  padding: 0px;
+}
+
+.createSpotText {
+  display: flex;
+  align-items: center;
+}
+
+.createSpot {
+  background-color: #ff385c;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.spotForm input {
+  height: 30px;
+  border: #d3d3d3 1.5px solid;
+  width: 100%;
+  border-radius: 5px;
+  color: gray;
+}
+
+.formContainer {
+  margin: 50px auto 0 auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 25px;
 }

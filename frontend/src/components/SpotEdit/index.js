@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import { useHistory } from "react-router-dom";
+import "./spotEdit.css";
 
 const EditSpot = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
   let { spotId } = useParams();
   spotId = Number(spotId);
-  
   const spot = useSelector((state) => state.spots[spotId]);
   const [name, setName] = useState(spot?.name);
   const [address, setAddress] = useState(spot?.address);
@@ -49,68 +48,76 @@ const EditSpot = () => {
       name,
       description,
       price,
-      spotId
+      spotId,
     };
-    
+
     return dispatch(spotActions.spotEdit(data))
-    .then(() => {
-      history.push(`/spots/${spot.id}`)
-    })    
+      .then(() => {
+        history.push(`/spots/${spot.id}`);
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (
-    <form className="editSpot" onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Name
-        <input
-          type="text"
-          placeholder="Spot name"
-          value={name}
-          onChange={updateName}
-        />
-      </label>
-      <label>
-        Address
-        <input
-          type="text"
-          placeholder="Address"
-          value={address}
-          onChange={updateAddress}
-        />
-      </label>
-      <label>
-        City
-        <input
-          type="text"
-          placeholder="City"
-          value={city}
-          onChange={updateCity}
-        />
-      </label>
-      <label>
-        State
-        <input
-          type="text"
-          placeholder="State"
-          value={state}
-          onChange={updateState}
-        />
-      </label>
-      <label>
-        Country
-        <input
-          type="text"
-          placeholder="Country"
-          value={country}
-          onChange={updateCountry}
-        />
-      </label>
-      <label>
+    <div className="editFormDiv">
+      <form className="editSpotForm" onSubmit={handleSubmit}>
+        <h2 className="editSpot"> Edit Your Spot! </h2>
+        {errors ?? (
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        )}
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            placeholder="Spot name"
+            value={name}
+            onChange={updateName}
+          />
+        </div>
+        <div>
+          <label>Address:</label>
+          <input
+            type="text"
+            placeholder="Address"
+            value={address}
+            onChange={updateAddress}
+          />
+        </div>
+        <div>
+          <label>City:</label>
+          <input
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={updateCity}
+          />
+        </div>
+        <div>
+          <label>State:</label>
+          <input
+            type="text"
+            placeholder="State"
+            value={state}
+            onChange={updateState}
+          />
+        </div>
+        <div>
+          <label>Country:</label>
+          <input
+            type="text"
+            placeholder="Country"
+            value={country}
+            onChange={updateCountry}
+          />
+        </div>
+        {/* <label>
         Lat
         <input
           type="text"
@@ -118,8 +125,8 @@ const EditSpot = () => {
           value={lat}
           onChange={updateLat}
         />
-      </label>
-      <label>
+      </label> */}
+        {/* <label>
         Lng
         <input
           type="text"
@@ -127,36 +134,41 @@ const EditSpot = () => {
           value={lng}
           onChange={updateLng}
         />
-      </label>
-      <label>
-        Description
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={updateDescription}
-        />
-      </label>
-      <label>
-        Price
-        <input
-          type="text"
-          value={price}
-          placeholder="Price"
-          onChange={updatePrice}
-        />
-        <label>
-          Image
+      </label> */}
+        <div>
+          <label>Description:</label>
+          <input
+            type="text"
+            placeholder="Description"
+            value={description}
+            onChange={updateDescription}
+          />
+        </div>
+        <div>
+          <label>Price:</label>
+          <input
+            type="text"
+            value={price}
+            placeholder="Price"
+            onChange={updatePrice}
+          />
+        </div>
+        <div>
+          <label>Image:</label>
           <input
             type="text"
             placeholder="img-url"
             value={previewImage}
             onChange={updatePreviewImage}
           />
-        </label>
-      </label>
-      <button type="submit">Confirm Edit</button>
-    </form>
+        </div>
+        <div className="buttonContainer">
+        <button className="confirmEditButton" type="submit">
+          Confirm Edit
+        </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

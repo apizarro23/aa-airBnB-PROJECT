@@ -1,8 +1,8 @@
-// frontend/src/store/session.js
-import { csrfFetch } from './csrf';
+import { csrfFetch } from "./csrf";
 
-const SET_USER = 'session/setUser';
-const REMOVE_USER = 'session/removeUser';
+const SET_USER = "session/setUser";
+const REMOVE_USER = "session/removeUser";
+
 
 const setUser = (user) => {
   return {
@@ -11,55 +11,56 @@ const setUser = (user) => {
   };
 };
 
+
 const removeUser = () => {
   return {
     type: REMOVE_USER,
   };
 };
 
-//LOGIN SESSION thunk
+//login
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
-  const response = await csrfFetch('/api/session', {
-    method: 'POST',
+  const response = await csrfFetch("/api/session", {
+    method: "POST",
     body: JSON.stringify({
       credential,
       password,
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data));
-  return response;
-};
-
-//RESTORE SESSION thunk
-export const restoreUser = () => async dispatch => {
-  const response = await csrfFetch('/api/session');
-  const data = await response.json();
+  
   dispatch(setUser(data.user));
   return response;
 };
 
-// SIGN UP NEW USER thunk
+//restore user
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session");
+  const data = await response.json();
+  dispatch(setUser(data.user));
+};
+
+//signup
 export const signup = (user) => async (dispatch) => {
-  const { firstName, lastName, username, email, password } = user;
+  const { username, email, password, firstName, lastName } = user;
   const response = await csrfFetch("/api/users", {
     method: "POST",
     body: JSON.stringify({
-      firstName,
-      lastName,
       username,
       email,
+      firstName,
+      lastName,
       password,
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data.user));
+
+  dispatch(setUser(data));
   return response;
 };
 
-
-//LOGOUT thunk
+//logout
 export const logout = () => async (dispatch) => {
   const response = await csrfFetch("/api/session", {
     method: "DELETE",
@@ -80,7 +81,7 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
-      return newState;
+      return newState; 
     default:
       return state;
   }

@@ -1,20 +1,17 @@
-.spotImg {
-    height: 250px;
-    flex-wrap: wrap;
-}
-
-.spotsPage {
+.eachSpot {
     display: flex;
     flex-wrap: wrap;
     margin: 1rem;
 }
 
 .spotImg {
+    flex-wrap: wrap;
     float: left;
     width: 300px;
     height: 300px;
     background-size: cover;
     border-radius: 33px;
+    object-fit: cover;
     margin: 1rem;
 }
 
@@ -25,3 +22,30 @@
 a:link {
     text-decoration: none;
 }
+
+.spotLocation {
+    padding-left: 17px;
+    padding-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.spotDistance {
+    display: flex;
+    padding-left: 17px;
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.spotPrice {
+    display: flex;
+    padding-left: 17px;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+
+

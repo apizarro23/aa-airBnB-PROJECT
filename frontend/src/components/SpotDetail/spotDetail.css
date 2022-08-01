@@ -1,0 +1,225 @@
+.spotDetailPage {
+  margin: auto auto 0 30px;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+.circle {
+  font-size: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+  margin-bottom: 7.69px;
+}
+.top {
+  display: flex;
+  gap: 15px;
+}
+
+.topText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 90%;
+ 
+}
+
+.editAndDeleteButtons {
+  margin-left: 100px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.editButton, .deleteButton {
+  background-color: #ff385c;
+  border: none;
+  padding: 10px 15px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.avgStarRating {
+  display: flex !important;
+  font-size: 14px;
+  width: 100%;
+}
+
+.starIcon {
+  margin-right: 0.5rem;
+  width: 12px;
+  /* flex-grow: 1; */
+}
+
+.avgRating {
+  margin-right: 0.5rem;
+  /* flex-grow: 1; */
+}
+
+.reviewCount {
+  margin-right: 0.5rem;
+  /* flex-grow: 1; */
+}
+
+.detailLocation {
+  display: flex;
+  /* flex-grow: 2; */
+}
+
+.detailImg {
+  display: block;
+  background-size: cover;
+  border-radius: 33px;
+  display: flex;
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  border-radius: 33px;
+  display: flex;
+  position: static;
+  margin-top: 10px;
+}
+
+ .outerBox {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  
+}
+
+.detailName {
+  font-size: 2rem !important;
+  display: flex;
+  margin-top: 15px;
+  justify-content: start;
+  align-items: center;
+}
+
+/* .createReviewButton {
+  background-color: white;
+  border: none;
+  font-size: 18px;
+  margin-top: 20px;
+  font-family: "Montserrat", sans-serif;
+  background-image: linear-gradient(
+    to right,
+    #e61e4d 0%,
+    #e31c5f 50%,
+    #d70466 100%
+  );
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  width: 370px;
+} */
+
+.detailPrice {
+  margin-top: 10px;
+  font-weight: 800;
+}
+
+.bottomContainer {
+  display: flex;
+  flex-direction: wrap;
+  width: 100%;
+  justify-content: space-between;
+  padding-bottom: 80px;
+  border-bottom: #D3D3D3 solid 1px;
+}
+
+.detailDescription {
+  padding-top: 10px;
+  width: 90%;
+  border-top: #D3D3D3 solid 1px;
+  letter-spacing: .5px;
+  line-height: 30px;
+  text-align: left;
+  margin-right: 10px;
+}
+
+#bookings_price {
+  width: 40%;
+  margin-right: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #D3D3D3;
+  border-radius: 20px;
+}
+
+#price_bigger {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+#priceId {
+  margin-left: 5px;
+  border: 0;
+  margin-top: 20px;
+  padding: 0;
+  font-weight: 300;
+}
+
+.bottomStars {
+  display: flex;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.circleBottom {
+  font-size: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.3rem;
+  margin-left: 0.3rem;
+}
+
+.reviewStars {
+  display: flex;
+  font-size: 1em;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.reviewButton {
+  background-color: #ff385c;
+  border: none;
+  padding: 10px 15px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.eachReviewStar {
+  margin-top: 10px;
+}
+
+.eachReview {
+  margin-bottom: 10px;
+}
+

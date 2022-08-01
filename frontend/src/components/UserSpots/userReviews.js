@@ -1,47 +1,59 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { getUserReviews, deleteReview } from "../../store/reviews";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { getUserReviews, loadReviews } from "../../store/reviews";
+import { deleteReview } from "../../store/reviews";
+import "./userReviews.css";
 
-function UsersReviews() {
-  const dispatch = useDispatch();
+function UserReviews() {
   const history = useHistory();
-  const userReviewsObj = useSelector((state) => state.reviews);
-  const banana = Object.values(userReviewsObj);
+  const dispatch = useDispatch();
+  const { spotId } = useParams();
   const [isLoaded, setIsloaded] = useState(false);
-
+  const [reviewId, setReviewId] = useState();
+  const reviews = useSelector((state) => {
+    return Object.values(state.reviews);
+  });
   useEffect(() => {
     dispatch(getUserReviews()).then(() => setIsloaded(true));
   }, [dispatch]);
 
-  const removeReview = (reviewId) => async (e) => {
+  const handleDeleteClick = (reviewId) => async (e) => {
     e.preventDefault();
-    await dispatch(deleteReview(reviewId))
-    await dispatch(getUserReviews())
-    history.push("/spots/currentUser/reviews");
+    const response = await dispatch(deleteReview(reviewId));
+    if (response) {
+      //   dispatch(getUserReviews());
+      history.push(`/spots/currentUser/reviews`);
+    }
+
+    // .then (() => history.push(`/spots/currentUser/reviews`))
+    // .then(dispatch(getUserReviews()))
   };
 
-  if (banana.length === 0) {
-    return <p>Oh no! No reviews yet.</p>;
-  }
+  console.log(reviews);
 
   return (
     isLoaded && (
-      <div>
-        <h2>My Reviews</h2>
-        {banana.map((review) => (
-          <div key={review.id} className="ind-review">
-            <div className="review-list-rating">
-              <i className="fa-solid fa-star"></i>
-              <p>{review.stars}</p>
+      <div className="reviewsContainer">
+        <div className="myReviews">
+          <div className="reviewTitle">{reviews?.length > 0 ? "My Reviews" : "No Reviews"}</div>
+          <div className="eachContainer">
+          {reviews?.map((review) => (
+            <div key={review.id} className="eachReview">
+              <div>My Comment: {review.review}</div>
+              <div>Stars: {review.stars}</div>
+              <div>
+                <button className="deleteReview" onClick={handleDeleteClick(review.id)}>
+                  Delete this Review
+                </button>
+              </div>
             </div>
-            <div className="review-content">{review.review}</div>
-            <button onClick={removeReview(review.id)}>Delete Review</button>
+          ))}
           </div>
-        ))}
+        </div>
       </div>
     )
   );
 }
 
-export default UsersReviews;
+export default UserReviews;

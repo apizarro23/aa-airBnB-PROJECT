@@ -1,0 +1,77 @@
+* {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 30px;
+  gap: 10px;
+  min-width: 35vw;
+  min-height: 35vh;
+}
+
+.welcomeContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: black;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.loginContainer label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.loginContainer > label > input {
+  height: 40px;
+  border: #d3d3d3 1.5px solid;
+  width: 100%;
+  border-radius: 5px;
+  color: gray;
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 5px;
+}
+
+.loginContainer > label > input:focus {
+  color: black;
+  border: black 1.5px solid;
+}
+
+.loginButton {
+  background: #ff385c;
+  color: white;
+  font-weight: 500;
+  height: 45px;
+  width: 103%;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.button {
+  /* background: linear-gradient(to bottom right, #e5204d, #d70965);
+  color: white; */
+  font-weight: 500;
+  height: 45px;
+  width: 103%;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.button:hover {
+  cursor: pointer;
+}

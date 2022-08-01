@@ -14,7 +14,13 @@ const validateReview = [
       .isLength({ min: 1, max: 5 })
       .withMessage('Stars must be an integer from 1 to 5'),
     handleValidationErrors
-  ];
+];
+
+//get all reviews
+router.get("/", async (req, res) => {
+  let reviews = await Review.findAll();
+  return res.json(reviews);
+});
 
 //get all reviews by spotid
 router.get('/spots/:spotId', async (req, res) => {

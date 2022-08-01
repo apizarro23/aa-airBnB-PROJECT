@@ -1,97 +1,151 @@
+* {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+}
+
 .navBar {
-    color: gray;
-    background-color: white;
-    margin-bottom: 10px;
-    border: white;
-    border-radius: 20px;
-    height: 40px;
-    width: 80px;
-    padding-left: 10px;
-    font-size: 15px;
-    display: flex;
-    text-align: start;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #DDDDDD;
+  color: gray;
+  background-color: white;
+  margin-bottom: 10px;
+  border: white;
+  border-radius: 20px;
+  height: 40px;
+  width: 80px;
+  padding-left: 10px;
+  font-size: 15px;
+  display: flex;
+  text-align: start;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #dddddd;
+}
+
+#demoUser {
+  background-color: #ff385c;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#navBarRightLoad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+  position: relative;
+}
+.navButton {
+  display: flex;
+  margin-right: 70px;
+  align-items: center;
+}
+
+#loginButtonDiv {
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#signUp {
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.nav:hover {
+  background-color: #d3d3d3;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
 }
 
 .nav_bars_icon {
-    color: #595959;
-    font-size: 17px;
-    padding-left: 5px;
+  color: #595959;
+  font-size: 17px;
+  padding-left: 5px;
 }
 
-.user_icon{
-    color: #717171;
-    padding-right: px;
-    font-size: 25px;
+.user_icon {
+  color: #717171;
+  padding-right: px;
+  font-size: 25px;
 }
 
-#menu{
-    cursor: pointer;
-    position: absolute;
-    top: 60px;
-    right: 95px;
-    width: 200px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+#menu {
+  cursor: pointer;
+  position: absolute;
+  top: 60px;
+  right: 95px;
+  width: 200px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 #menu > * {
-    padding: 15px;
-    width: 100%;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    letter-spacing: .5px;
+  padding: 15px;
+  width: 100%;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  letter-spacing: 0.5px;
 }
 
-#dropdown1, 
+#dropdown1,
 #dropdown2 {
-    font-size: 15px;
-    color: black;
-    font-weight: 500;
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
 }
 
 #nav_right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    height: 100%;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  position: relative;
 }
 
 #home {
-    background-color: white;
-    display: flex;
-    border-bottom: .5px solid #D3D3D3;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 18px;
-    height: 70px;
-    gap: 10px;
+  background-color: white;
+  display: flex;
+  border-bottom: 0.5px solid #d3d3d3;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  height: 70px;
+  gap: 10px;
 }
 
 #logo {
-    height: 100%;
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- }
- 
- #logo > a >img {
-    height: 50px;
- }
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-#signUp > a {
-    display: flex;
-    justify-content: center;
-    background-color: red;
+#logo > a > img {
+  height: 50px;
 }
