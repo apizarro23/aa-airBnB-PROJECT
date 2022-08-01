@@ -51,20 +51,6 @@ export const createReviews = (spotId, review) => async (dispatch) => {
   return response;
 };
 
-// get all reviews of a spot
-// export const loadReviews = (spotId) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/reviews/${spotId}`);
-  
-//   if (response.ok) {
-//     const allReviews = await response.json();
-    
-//     dispatch(loadAllReviews(allReviews));
-//     return allReviews;
-//   }
-
-//   return response;
-// };
-
 export const loadAllReviewsThunk = () => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews`);
   if (response.ok) {
