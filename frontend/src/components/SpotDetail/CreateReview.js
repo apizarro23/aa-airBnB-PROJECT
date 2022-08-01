@@ -39,7 +39,7 @@ const CreateReviews = () => {
       setErrors(errors);
       return;
     }
-    return dispatch(reviewActions.createReviews(spotId, data)).then(
+    return dispatch(createReviews(spotId, data)).then(
       async (res) => {
         setSubmitSuccess(true);
       }

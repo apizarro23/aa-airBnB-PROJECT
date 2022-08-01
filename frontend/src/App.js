@@ -10,7 +10,7 @@ import SpotsPage from "./components/Spots";
 import NewSpotForm from "./components/SpotsForm";
 import EditSpot from "./components/SpotEdit";
 import UserSpots from "./components/UserSpots";
-import CreateReviews from "./components/SpotDetail/createReview";
+import CreateReviews from "./components/SpotDetail/CreateReview";
 import UserReviews from "./components/UserSpots/userReviews";
 
 function App() {
