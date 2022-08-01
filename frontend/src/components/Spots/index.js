@@ -8,12 +8,12 @@ const SpotsPage = () => {
   const dispatch = useDispatch();
   let { spotId } = useParams();
   spotId = Number(spotId);
-  const spotsList = useSelector((state) => Object.values(state?.spots));
+  const spotsList = useSelector((state) => Object.values(state.spots));
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllSpots());
-  }, [dispatch]);
+  }, [dispatch, JSON.stringify(spotsList)]);
 
   return (
     <div className="spotsPage">
