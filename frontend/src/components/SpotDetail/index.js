@@ -23,10 +23,7 @@ const SpotsDetail = () => {
   const spots = useSelector((state) => state.spots);
   const spotsString = JSON.stringify(spots);
   const reviewsString = JSON.stringify(reviews);
-  // console.log(sessionUser, 'SESSION USER!!!!!!!')
-  // console.log(sessionUser.user, 'THIS IS THE ACTIVE USER.......')
-  // console.log(spot, 'THIS IS THE SPOT')
-  
+
   useEffect(() => {
     if (!spot) {
       dispatch(findASpot(spotId))

@@ -6,7 +6,6 @@ import CreateReview from './createReview';
 const SpotReviews = ({spotId}) => {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => Object.values(state.reviews));
-  // console.log(reviews, 'THIS IS REVIEWS!!!!!')
 
   useEffect(() => {
       dispatch(loadReviews(spotId));
