@@ -14,8 +14,8 @@ import EditSpot from "./components/SpotEdit";
 import UserSpots from "./components/UserSpots";
 
 //REVIEWS CRUD IMPORTS
-import CreateReview from "./components/SpotDetail/createReview";
-import UserReviews from "./components/UserSpots/userReviews";
+import CreateReview from "./components/SpotDetail/CreateReview";
+import UserReviews from "./components/UserSpots/UserReviews";
 
 
 function App() {

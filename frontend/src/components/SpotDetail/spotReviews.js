@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadReviews } from '../../store/reviews';
-import CreateReview from './createReview';
+import CreateReview from './CreateReview';
 
 const SpotReviews = ({spotId}) => {
   const dispatch = useDispatch();
