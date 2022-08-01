@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useParams, useHistory } from "react-router-dom";
-import * as reviewActions from "../../store/reviews";
+// import * as reviewActions from "../../store/reviews";
+import { createReviews } from "../../store/reviews";
+import './SpotsDetail.css'
 
 
 const CreateReview = () => {
@@ -29,7 +31,7 @@ const CreateReview = () => {
       
       // history.push(`/spots/${spotId}`)
 
-      return dispatch(reviewActions.createReviews(spotId, review))
+      return dispatch(createReviews(spotId, review))
         .then(async (res) => {
           setSubmitSuccess(true);
         })
