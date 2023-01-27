@@ -23,8 +23,7 @@ function Navigation({ isLoaded }) {
       <>
       <div id='navBarRightLoad'>
         <div id='loginButtonDiv'> <LoginFormModal /></div>
-        <div id='signUp'><NavLink to="/signup">Sign Up</NavLink> </div>
-        <div> <DemoUser /> </div>
+        <div ><NavLink id='signUp' to="/signup">Sign Up</NavLink> </div>
       </div>
       </>
     );

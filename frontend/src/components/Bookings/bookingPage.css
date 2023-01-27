@@ -1,0 +1,70 @@
+.left-container {
+    display: flex;
+    justify-content:flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.bookingImg {
+    height: 400px;
+    width: 700px;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.congrats {
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.book-city {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.bookingName {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.dates {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.end {
+    display: flex;
+    margin-left: 380px;
+}
+
+.checkout-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.checkout-time {
+    display: flex;
+    margin-left: 380px;
+}
+
+.view {
+    background: #ff385c;
+    color: white;
+    font-size: 16px;
+    /* font-weight: 500; */
+    height: 45px;
+    margin-top: 30px;
+    border-radius: 33px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.link {
+    width: 260px;
+}

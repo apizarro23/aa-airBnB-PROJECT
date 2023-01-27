@@ -47,5 +47,18 @@ a:link {
     font-weight: 100;
 }
 
+.spot-city {
+    color: black;
+}
 
+.spotStars {
+    color: black;
+}
 
+.spotDistance {
+    color: grey;
+}
+
+.spotPrice {
+    color: black;
+}

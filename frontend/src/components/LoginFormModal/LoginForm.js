@@ -21,9 +21,9 @@ function LoginForm() {
   };
 
   return (
-        <div className="modal">
+    <div className="modal">
       <div>
-        <h2 className="welcomeContainer"> Welcome to CloneBnB </h2>
+        <h2 className="welcomeContainer"> Welcome to StairBnB </h2>
       </div>
       <form className="loginContainer" onSubmit={handleSubmit}>
         <div id="errors_login">
@@ -32,7 +32,7 @@ function LoginForm() {
           ))}
         </div>
         <label>
-          {/* Email */}
+          
           <input
             className="loginInput"
             type="text"
@@ -43,7 +43,7 @@ function LoginForm() {
           />
         </label>
         <label>
-          {/* Password */}
+          
           <input
             className="loginInput"
             type="password"
@@ -56,6 +56,17 @@ function LoginForm() {
         <button className="loginButton" type="submit">
           Log In
         </button>
+        <button
+          type="submit"
+          className="demo-login-form-button"
+          onClick={() => {
+            setCredential("demo@user.io");
+            setPassword("password");
+          }}
+        >
+          Demo User
+        </button>
+        
       </form>
     </div>
   );

@@ -18,6 +18,7 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid #dddddd;
+  cursor: pointer;
 }
 
 #demoUser {
@@ -30,6 +31,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  cursor: pointer;
 }
 
 #navBarRightLoad {
@@ -39,15 +41,18 @@
   width: 30%;
   height: 100%;
   position: relative;
+  cursor: pointer;
 }
 .navButton {
   display: flex;
   margin-right: 70px;
   align-items: center;
+  cursor: pointer;
 }
 
+
 #loginButtonDiv {
-  color: black;
+  color: #ff385c;
   font-size: 16px;
   font-weight: 500;
   margin-right: 0.5rem;
@@ -58,7 +63,7 @@
 }
 
 #signUp {
-  color: black;
+  color: #ff385c;
   font-size: 16px;
   font-weight: 500;
   height: 100%;
@@ -110,8 +115,8 @@
   letter-spacing: 0.5px;
 }
 
-#dropdown1,
-#dropdown2 {
+
+#dropdown {
   font-size: 15px;
   color: black;
   font-weight: 500;
@@ -148,4 +153,8 @@
 
 #logo > a > img {
   height: 50px;
+}
+
+.demo-btn {
+  cursor: pointer;
 }

@@ -11,11 +11,11 @@ const SpotForm = () => {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [previewImage, setPreviewImage] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
+  const [price, setPrice] = useState(1);
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -34,8 +34,10 @@ const SpotForm = () => {
       errors.push("Please enter a name with a length greater than 2");
     if (!description) errors.push("Please include a description");
     if (!previewImage) errors.push("Please include a preview image!");
+    if (!lat && !lng) errors.push("Please include a longitude and latitude.")
     if (name.length > 25)
-      errors.push("Please include a name with a length that is less than 25.");
+      errors.push("Please include a name with a length that is less than 25");
+    if (previewImage.length > 255) (errors.push("Please include a different image URL that is less than 255 characters"))
     return errors;
   };
 
@@ -48,12 +50,19 @@ const SpotForm = () => {
       state: state,
       country: country,
       previewImage: previewImage,
-      lat: lat,
-      lng: lng,
       name: name,
+      lng: lng,
+      lat, lat,
       description: description,
       price: price,
     };
+
+    const validationErrors = validations();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors)
+      return;
+    }
+
     return dispatch(spotActions.createSpot(data))
       .then(async (res) => {
         setSubmitSuccess(true);
@@ -129,26 +138,6 @@ const SpotForm = () => {
           />
         </div>
         <div>
-          <label>Latitude:</label>
-        <input
-          type="text"
-          placeholder="Latitude"
-          value={lat}
-          onChange={(e) => setLat(e.target.value)}
-          required
-          />
-          </div>
-        <div>
-          <label>Longitude</label>
-        <input
-          type="text"
-          placeholder="Longitude"
-          value={lng}
-          onChange={(e) => setLng(e.target.value)}
-          required
-          />
-          </div>
-        <div>
           <label>Description:</label>
         <input
           type="text"
@@ -158,8 +147,27 @@ const SpotForm = () => {
           required
           />
           </div>
+          <div>
+          <label>Longitude:</label>
+        <input
+          type="text"
+          placeholder="0"
+          value={lng}
+          onChange={(e) => setLng(e.target.value)}
+          required
+          />
+          </div><div>
+          <label>Latitude:</label>
+        <input
+          type="text"
+          placeholder="0"
+          value={lat}
+          onChange={(e) => setLat(e.target.value)}
+          required
+          />
+          </div>
         <div>
-          <label>Price:</label>
+          <label>Price Per Night:</label>
         <input
           type="number"
           min={1}

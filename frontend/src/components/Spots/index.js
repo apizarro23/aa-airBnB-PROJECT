@@ -10,7 +10,6 @@ const SpotsPage = () => {
   const spots = useSelector((state) => Object.values(state?.spots));
   const reviews = useSelector((state) => Object.values(state.reviews));
   const sessionUser = useSelector((state) => state.session.user);
-
   const spotsString = JSON.stringify(spots);
   const reviewsString = JSON.stringify(reviews);
 
@@ -22,7 +21,6 @@ const SpotsPage = () => {
     dispatch(loadAllReviewsThunk());
   }, [dispatch, reviewsString, sessionUser]);
 
-  //define a function that is going to receive a spotid and should return a star rating for that spot
 
   const starSpot = (spotId) => {
     const allReviewsForThisSpot = reviews.filter((review) => {
@@ -50,7 +48,7 @@ const SpotsPage = () => {
                   <div className="roomDetails">
                     <div className="roomData">
                       <div className="spotLocation">
-                        <div>
+                        <div className="spot-city">
                         {spot.city}, {spot.state}
                         </div>
                         <div className="spotStars">
