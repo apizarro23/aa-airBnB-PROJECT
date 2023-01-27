@@ -1,0 +1,71 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.trips {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.upcoming {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.each-booking {
+    border: 1px solid grey;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.image-div {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+/* .start-date {
+    font-weight: 700;
+} */
+
+.spot-info-div {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+.booking-name {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.booking-preview {
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: flex-end;
+    height: 200px;
+    width: 450px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.booking-info {
+    display: flex;
+    flex-direction: column;
+}

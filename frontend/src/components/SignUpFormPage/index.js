@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import "./SignUpForm.css";
+import "./SignupForm.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -21,47 +21,28 @@ function SignupFormPage() {
 
   if (sessionUser) return <Redirect to="/" />;
 
-  // const validations = () => {
-  //   const errors = [];
-  //   if (email.length < 5)
-  //     errors.push("Review character count must be 5 or greater");
-  //   if (stars > 5 || stars < 1)
-  //     errors.push("Please enter a number from 1 to 5 stars");
-  //   return errors;
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
         sessionActions.signup({
-          firstName,
-          lastName,
           email,
           username,
           password,
+          firstName,
+          lastName,
         })
-      ).catch(async (res) => {
-        const data = await res.json();
-        if (data) {
-          setErrors(data);
-          // setErrors((prev) => [...prev, data.errors])
-        }
-        return;
-      });
+      )
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data.length) setErrors(data);
+        });
     }
-
-    // setErrors([
-    //   "User with that email already exists",
-    // ]);
-
-    setErrors((prev) => [
-      ...prev,
+    return setErrors([
       "Confirm Password field must be the same as the Password field",
     ]);
   };
-  console.log(errors, "errors");
   return (
     <div className="formDiv">
       <h2 className="signUp">Sign Up</h2>
@@ -125,7 +106,9 @@ function SignupFormPage() {
             required
           />
         </label>
-        <button className="signUpButton" type="submit">Sign Up</button>
+        <button className="signUpButton" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );

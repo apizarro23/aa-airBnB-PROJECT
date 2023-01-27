@@ -1,0 +1,58 @@
+.cancel-btn {
+    background-color: #ff385c;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    cursor: pointer;
+    width: 140px;
+}
+
+.delete-post {
+    height: 180px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.delete-top-modal {
+    font-size: 20px;
+    text-align: center;
+}
+
+.delete-btns-outer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.confirmation-delete-msg {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.delete-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 36px;
+    border: none;
+    color: #e6fdff;
+    background-color: #ff385c;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 0 10px 20px;
+}
+
+.delete-tweet-button {
+    margin-left: 5px;
+    font-size: 20px;
+}

@@ -34,6 +34,26 @@ const EditSpot = () => {
   const updatePrice = (e) => setPrice(e.target.value);
   const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
+  const validations = () => {
+    const errors = [];
+    if (!address) errors.push("Please enter an address");
+    if (!city) errors.push("Please enter a city");
+    if (!state) errors.push("Please enter a state");
+    if (!country) errors.push("Please enter a country");
+    if (!previewImage) errors.push("Please include a preview image");
+    if (name.length < 2)
+      errors.push("Please enter a name with a length greater than 2");
+    if (!description) errors.push("Please include a description");
+    if (!previewImage) errors.push("Please include a preview image!");
+    if (name.length > 25)
+      errors.push("Please include a name with a length that is less than 25");
+    if (previewImage.length > 255)
+      errors.push(
+        "Please include a different image URL that is less than 255 characters"
+      );
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
@@ -50,6 +70,12 @@ const EditSpot = () => {
       price,
       spotId,
     };
+
+    const validationErrors = validations();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     return dispatch(spotActions.spotEdit(data))
       .then(() => {
@@ -117,24 +143,24 @@ const EditSpot = () => {
             onChange={updateCountry}
           />
         </div>
-        {/* <label>
-        Lat
-        <input
-          type="text"
-          placeholder="Latitude"
-          value={lat}
-          onChange={updateLat}
-        />
-      </label> */}
-        {/* <label>
-        Lng
-        <input
-          type="text"
-          placeholder="Longitude"
-          value={lng}
-          onChange={updateLng}
-        />
-      </label> */}
+        <div>
+          <label>Latitude</label>
+          <input
+            type="text"
+            placeholder="Latitude"
+            value={lat}
+            onChange={updateLat}
+          />
+        </div>
+        <div>
+          <label>Longitude</label>
+          <input
+            type="text"
+            placeholder="Longitude"
+            value={lng}
+            onChange={updateLng}
+          />
+        </div>
         <div>
           <label>Description:</label>
           <input
@@ -145,7 +171,7 @@ const EditSpot = () => {
           />
         </div>
         <div>
-          <label>Price:</label>
+          <label>Price Per Night:</label>
           <input
             type="text"
             value={price}
@@ -163,9 +189,9 @@ const EditSpot = () => {
           />
         </div>
         <div className="buttonContainer">
-        <button className="confirmEditButton" type="submit">
-          Confirm Edit
-        </button>
+          <button className="confirmEditButton" type="submit">
+            Confirm Edit
+          </button>
         </div>
       </form>
     </div>

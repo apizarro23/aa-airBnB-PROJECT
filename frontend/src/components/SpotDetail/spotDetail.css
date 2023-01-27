@@ -1,8 +1,8 @@
 .spotDetailPage {
-  margin: auto auto 0 30px;
   flex-direction: column;
   width: 100%;
   gap: 15px;
+  
 }
 
 .circle {
@@ -11,11 +11,17 @@
   justify-content: center;
   align-items: center;
   margin-right: 0.5rem;
-  margin-bottom: 7.69px;
 }
 .top {
   display: flex;
   gap: 15px;
+}
+
+.location {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .topText {
@@ -24,7 +30,6 @@
   gap: 10px;
   flex-wrap: wrap;
   width: 90%;
- 
 }
 
 .editAndDeleteButtons {
@@ -36,7 +41,12 @@
   justify-content: center;
 }
 
-.editButton, .deleteButton {
+.spotsReviews {
+  margin-top: 20px;
+}
+
+.editButton,
+.deleteButton {
   background-color: #ff385c;
   border: none;
   padding: 10px 15px;
@@ -52,6 +62,7 @@
 
 .avgStarRating {
   display: flex !important;
+  align-items: center;
   font-size: 14px;
   width: 100%;
 }
@@ -60,6 +71,10 @@
   margin-right: 0.5rem;
   width: 12px;
   /* flex-grow: 1; */
+}
+
+.star {
+  margin-right: 5px;
 }
 
 .avgRating {
@@ -83,8 +98,8 @@
   border-radius: 33px;
   display: flex;
   object-fit: cover;
-  width: 75%;
-  height: 75%;
+  width: 400px;
+  height: 400px;
   background-size: cover;
   border-radius: 33px;
   display: flex;
@@ -92,11 +107,10 @@
   margin-top: 10px;
 }
 
- .outerBox {
+.outerBox {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  
 }
 
 .detailName {
@@ -106,27 +120,6 @@
   justify-content: start;
   align-items: center;
 }
-
-/* .createReviewButton {
-  background-color: white;
-  border: none;
-  font-size: 18px;
-  margin-top: 20px;
-  font-family: "Montserrat", sans-serif;
-  background-image: linear-gradient(
-    to right,
-    #e61e4d 0%,
-    #e31c5f 50%,
-    #d70466 100%
-  );
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  height: 50px;
-  width: 370px;
-} */
 
 .detailPrice {
   margin-top: 10px;
@@ -138,20 +131,54 @@
   flex-direction: wrap;
   width: 100%;
   justify-content: space-between;
-  padding-bottom: 80px;
-  border-bottom: #D3D3D3 solid 1px;
+  border-bottom: #d3d3d3 solid 1px;
 }
 
 .detailDescription {
-  padding-top: 10px;
   width: 90%;
-  border-top: #D3D3D3 solid 1px;
-  letter-spacing: .5px;
+  /* border-top: #D3D3D3 solid 1px; */
+  letter-spacing: 0.5px;
   line-height: 30px;
   text-align: left;
   margin-right: 10px;
 }
 
+.self {
+  font-weight: 700;
+  margin-top: 10px;
+  margin-top: 20px;
+}
+
+.check {
+  font-size: 14px;
+  color: grey;
+  
+  margin-bottom: 20px;
+}
+
+.superhost {
+  font-weight: 700;
+}
+
+.experience {
+  color: grey;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.cancel {
+  font-weight: 700;
+  margin-bottom: 20px;
+  border-bottom: #D3D3D3 solid 1px;
+}
+
+.hosted-container {
+  display: flex;
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: #d3d3d3 solid 1px;
+}
 #bookings_price {
   width: 40%;
   margin-right: 20px;
@@ -159,7 +186,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   border-radius: 20px;
 }
 
@@ -222,4 +249,3 @@
 .eachReview {
   margin-bottom: 10px;
 }
-

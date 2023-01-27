@@ -59,17 +59,28 @@
   margin-bottom: 15px;
   border-radius: 5px;
   width: 100%;
+  cursor: pointer;
 }
 
-.button {
-  /* background: linear-gradient(to bottom right, #e5204d, #d70965);
-  color: white; */
+.demo-login-form-button {
+  background: #ff385c;
+  color: white;
   font-weight: 500;
   height: 45px;
   width: 103%;
   margin-bottom: 15px;
   border-radius: 5px;
   width: 100%;
+  cursor: pointer;
+
+}
+
+.button {
+  font-weight: 500;
+  height: 45px;
+  width: 103%;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
 .button:hover {

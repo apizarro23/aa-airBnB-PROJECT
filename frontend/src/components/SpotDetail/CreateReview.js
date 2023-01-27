@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-// import * as reviewActions from "../../store/reviews";
-import { createReviews } from "../../store/reviews";
+import * as reviewActions from "../../store/reviews";
 import "./createReview.css";
 
 const CreateReviews = () => {
@@ -39,7 +38,7 @@ const CreateReviews = () => {
       setErrors(errors);
       return;
     }
-    return dispatch(createReviews(spotId, data)).then(
+    return dispatch(reviewActions.createReviews(spotId, data)).then(
       async (res) => {
         setSubmitSuccess(true);
       }
@@ -77,6 +76,8 @@ const CreateReviews = () => {
           <input
             type="number"
             placeholder="Rating"
+            min={1}
+            max={5}
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required
