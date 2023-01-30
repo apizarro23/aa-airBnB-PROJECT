@@ -13,6 +13,7 @@ const MyBookings = () => {
 
   useEffect(() => {
     dispatch(getCurrentUserBooking());
+    console.log("getCurrentUserBooking action called with bookings: ", bookings);
   }, [dispatch, JSON.stringify(bookings)]);
 
   return (
